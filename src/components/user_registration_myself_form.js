@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 const UserRegistrationMyselfForm = (props) => {
-	const [enteredName, setEnteredName] = React.useState("");
+	const [enteredName, setEnteredName] = useState("");
 
 	const nameChangeHandler = (event) => {
 		setEnteredName(event.target.value);
