@@ -10,8 +10,8 @@ const UserRegistrationIndex = () => {
 	};
 
 	return (
-		<div >
-			<div className="react-userForm-index">
+		<div className="react-userRegisterForm">
+			<div className="react-userRegisterForm-index">
 				<h1>Register New Account</h1>
 				<p>I am registering for: </p>
 				<input type="radio" id="myself" name="user_type" value="Myself"></input>
@@ -25,6 +25,7 @@ const UserRegistrationIndex = () => {
 			<UserRegistrationMyselfForm
 				onDisplayFormValues={displayFormValuesHandler}
 			></UserRegistrationMyselfForm>
+			<hr/>
 
 			<UserRegistrationDependentForm></UserRegistrationDependentForm>
 			<UserRegistrationOrganizationForm></UserRegistrationOrganizationForm>

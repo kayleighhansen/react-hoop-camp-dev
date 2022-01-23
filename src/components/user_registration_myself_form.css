@@ -1,0 +1,36 @@
+.react-userRegisterForm-myself {
+
+}
+
+.react-userRegisterForm-myself input {
+    height: 25px;
+    border: none;
+    background-color: lightgrey;
+    font-style: italic;
+}
+
+.react-userRegisterForm-myself-grid-container {
+    display: grid;
+    grid-row-gap: 8px;
+    grid-template-columns: auto auto auto;
+}
+
+.react-userRegisterForm-myself-grid-item8 {
+    grid-column: 3/4;
+}
+
+.react-userRegisterForm-myself-grid-item9 {
+    grid-column: 1/3;
+}
+
+.react-userRegisterForm-myself-grid-item11 {
+    grid-column: 1/3;
+}
+
+.react-userRegisterForm-myself-grid-item12 {
+    grid-column: 3/4;
+}
+
+.react-userRegisterForm-myself-grid-item13 {
+    grid-column: 3/4;
+}

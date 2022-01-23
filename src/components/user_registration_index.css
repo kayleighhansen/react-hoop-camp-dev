@@ -1,9 +1,13 @@
-.react-userForm-index {
-    text-align: center;
-    font-size: 16px;
+.react-userRegisterForm {
+    max-width: 700px;
+    margin: auto;
+    text-align:center;
 }
 
-.react-userForm-index label {
-    margin-right: 25px;
+.react-userRegisterForm-index {
 
+}
+
+.react-userRegisterForm-index label {
+    margin-right: 25px;
 }
