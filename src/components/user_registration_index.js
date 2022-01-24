@@ -10,25 +10,38 @@ const UserRegistrationIndex = () => {
 	};
 
 	return (
-		<div className="react-userRegisterForm">
+		<div className="react-userRegisterForm-all">
 			<div className="react-userRegisterForm-index">
 				<h1>Register New Account</h1>
 				<p>I am registering for: </p>
 				<input type="radio" id="myself" name="user_type" value="Myself"></input>
 				<label for="myself">Myself</label>
-				<input type="radio" id="dependent" name="user_type" value="Dependent"></input>
+				<input
+					type="radio"
+					id="dependent"
+					name="user_type"
+					value="Dependent"
+				></input>
 				<label for="dependent">One or More Dependents</label>
-				<input type="radio" id="organization" name="user_type" value="Organization"></input>
+				<input
+					type="radio"
+					id="organization"
+					name="user_type"
+					value="Organization"
+				></input>
 				<label for="organization">An Organization</label>
 			</div>
-			
-			<UserRegistrationMyselfForm
-				onDisplayFormValues={displayFormValuesHandler}
-			></UserRegistrationMyselfForm>
-			<hr/>
+			<div className="react-userRegisterForm">
+				<UserRegistrationMyselfForm
+					onDisplayFormValues={displayFormValuesHandler}
+				></UserRegistrationMyselfForm>
+				<hr />
 
-			<UserRegistrationDependentForm></UserRegistrationDependentForm>
-			<UserRegistrationOrganizationForm></UserRegistrationOrganizationForm>
+				<UserRegistrationDependentForm></UserRegistrationDependentForm>
+				<hr />
+
+				<UserRegistrationOrganizationForm></UserRegistrationOrganizationForm>
+			</div>
 		</div>
 	);
 };

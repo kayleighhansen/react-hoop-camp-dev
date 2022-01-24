@@ -1,11 +1,15 @@
-.react-userRegisterForm {
-    max-width: 700px;
+.react-userRegisterForm-all {
+    max-width: 800px;
     margin: auto;
     text-align:center;
 }
 
-.react-userRegisterForm-index {
-
+.react-userRegisterForm input {
+    width: 200px;
+    height: 25px;
+    border: none;
+    background-color: lightgrey;
+    font-style: italic;
 }
 
 .react-userRegisterForm-index label {
