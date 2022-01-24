@@ -15,3 +15,14 @@
 .react-userRegisterForm-index label {
     margin-right: 25px;
 }
+
+.react-userRegisterForm-register-account-button {
+    margin-top: 16px;
+    width: 350px;
+    height: 30px;
+    border: none;
+    background: rgb(77, 126, 218);
+    color: white;
+    font-style: italic;
+    font-size: 16px;
+}

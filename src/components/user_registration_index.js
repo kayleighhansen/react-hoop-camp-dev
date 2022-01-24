@@ -41,6 +41,8 @@ const UserRegistrationIndex = () => {
 				<hr />
 
 				<UserRegistrationOrganizationForm></UserRegistrationOrganizationForm>
+
+				<button className="react-userRegisterForm-register-account-button">Register My Account</button>
 			</div>
 		</div>
 	);
