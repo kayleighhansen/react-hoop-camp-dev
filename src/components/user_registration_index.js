@@ -7,15 +7,20 @@ import UserRegistrationOrganizationForm from "./user_registration_organization_f
 
 const UserRegistrationIndex = () => {
 	const getSelfFormValuesHandler = (contactInfoData) => {
-		// console.log(contactInfoData);
+		// we need to include the household relationship because we want to create a household automatically for every single user 
 		const newContactInfoData = { ...contactInfoData, msnfp_householdrelationship: "844060000"};
+		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData);
 	};
 
+	// this function calls our C# API and the C# API will call dynamics to save the data into database
 	const createNewSingleUserContact = (newContactInfoData) => {
+		console.log(newContactInfoData);
+		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
 			body: JSON.stringify(newContactInfoData),
+			headers: {"Content-type": "application/json; charset=UTF-8"}
 		}).then((response) => {
 			console.log(response);
 		});
