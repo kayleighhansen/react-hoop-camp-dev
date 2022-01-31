@@ -5,7 +5,7 @@ const UserRegistrationOrganizationForm = () => {
 	return (
 		<div className="react-userRegisterForm-organization">
 			<h3>Organization</h3>
-			<form className="react-userRegisterForm-organization-grid-container">
+			<div className="react-userRegisterForm-organization-grid-container">
 				<div className="react-userRegisterForm-organization-grid-item1">
 					<input
 						type="text"
@@ -48,7 +48,7 @@ const UserRegistrationOrganizationForm = () => {
 						placeholder="Organization Country"
 					/>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 };

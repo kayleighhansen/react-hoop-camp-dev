@@ -5,7 +5,7 @@ const UserRegistrationDependentForm = () => {
 	return (
 		<div className="react-userRegisterForm-dependent">
 			<h3>Dependents</h3>
-			<form className="react-userRegisterForm-dependent-grid-container">
+			<div className="react-userRegisterForm-dependent-grid-container">
 				<div className="react-userRegisterForm-dependent-grid-item1">
 					<input
 						type="text"
@@ -47,7 +47,7 @@ const UserRegistrationDependentForm = () => {
 						placeholder="Emergency Contact Phone"
 					/>
 				</div>
-			</form>
+			</div>
 			<button className="react-userRegisterForm-dependent-add-button">Add Dependent</button>
 		</div>
 	);
