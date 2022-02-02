@@ -115,6 +115,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="first_name"
 						placeholder="First Name"
 						onChange={firstNameChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item2">
@@ -123,6 +124,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="email"
 						placeholder="Email"
 						onChange={emailChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item3">
@@ -131,6 +133,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="city"
 						placeholder="City"
 						onChange={cityChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item4">
@@ -139,6 +142,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="last_name"
 						placeholder="Last Name"
 						onChange={lastNameChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item5">
@@ -147,6 +151,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="phone"
 						placeholder="Phone"
 						onChange={phoneChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item6">
@@ -155,6 +160,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="state"
 						placeholder="State"
 						onChange={stateChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item7">
@@ -163,6 +169,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="birthday"
 						placeholder="Birthday"
 						onChange={birthdayChangeHandler}
+						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-item8">
@@ -171,6 +178,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						name="country"
 						placeholder="Country"
 						onChange={countryChangeHandler}
+						required
 					/>
 				</div>
 				<br />
