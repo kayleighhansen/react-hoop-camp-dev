@@ -6,9 +6,15 @@ import UserRegistrationDependentForm from "./user_registration_dependent_form";
 import UserRegistrationOrganizationForm from "./user_registration_organization_form";
 
 const UserRegistrationIndex = () => {
+	/******************************************************************************
+	 * This section is for Registering for Myself
+	 *****************************************************************************/
 	const getSelfFormValuesHandler = (contactInfoData) => {
-		// we need to include the household relationship because we want to create a household automatically for every single user 
-		const newContactInfoData = { ...contactInfoData, msnfp_householdrelationship: "844060000"};
+		// we need to include the household relationship because we want to create a household automatically for every single user
+		const newContactInfoData = {
+			...contactInfoData,
+			msnfp_householdrelationship: "844060000",
+		};
 		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData);
 	};
@@ -20,11 +26,16 @@ const UserRegistrationIndex = () => {
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
 			body: JSON.stringify(newContactInfoData),
-			headers: {"Content-type": "application/json; charset=UTF-8"}
+			headers: { "Content-type": "application/json; charset=UTF-8" },
 		}).then((response) => {
 			console.log(response);
 		});
 	};
+
+	/******************************************************************************
+	 * This section is for Registering for An Organization
+	 *****************************************************************************/
+	const getOrganizationFormValuesHandler = () => {};
 
 	// set up this to catch what the user select on the radio button
 	const [selectedForm, setSelectedForm] = useState("");
@@ -45,7 +56,9 @@ const UserRegistrationIndex = () => {
 				return <UserRegistrationDependentForm></UserRegistrationDependentForm>;
 			case "Organization":
 				return (
-					<UserRegistrationOrganizationForm></UserRegistrationOrganizationForm>
+					<UserRegistrationOrganizationForm
+						onGetOrganizationFormValues={getOrganizationFormValuesHandler}
+					></UserRegistrationOrganizationForm>
 				);
 			default:
 				return <p>Please select the type of user you are registering for.</p>;

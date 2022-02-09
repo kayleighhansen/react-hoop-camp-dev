@@ -8,3 +8,15 @@
 	grid-row-gap: 8px;
 	grid-template-columns: auto auto auto;
 }
+
+.react-userRegisterForm-organization-register-button {
+	width: 350px;
+	height: 30px;
+	border: none;
+	background: rgb(77, 126, 218);
+	color: white;
+	font-style: italic;
+	font-size: 16px;
+    margin: auto;
+    grid-column: 1/4;
+}
