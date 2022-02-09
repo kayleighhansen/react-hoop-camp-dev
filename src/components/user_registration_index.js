@@ -35,7 +35,22 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for An Organization
 	 *****************************************************************************/
-	const getOrganizationFormValuesHandler = () => {};
+	// handle the form data from users
+	const getOrganizationFormValuesHandler = (organizationData) => {
+		createNewOrganization(organizationData);
+	};
+
+	const createNewOrganization = (organizationData) => {
+		console.log(organizationData);
+		// I learned that I MUST have the headers here otherwise I got a 415 error
+		fetch("https://localhost:44398/accounts/createAccount", {
+			method: "POST",
+			body: JSON.stringify(organizationData),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		}).then((response) => {
+			console.log(response);
+		});
+	};
 
 	// set up this to catch what the user select on the radio button
 	const [selectedForm, setSelectedForm] = useState("");

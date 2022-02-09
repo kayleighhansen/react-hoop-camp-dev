@@ -58,9 +58,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 			address1_country: enteredOrgCountry,
 			crbb4_organizationtype: selectedOrgType,
 		};
-
-		console.log(organizationData);
-
+		
 		// pass the data up to parent component (index.js)
 		onGetOrganizationFormValues(organizationData);
 	};
