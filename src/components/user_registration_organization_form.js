@@ -32,11 +32,17 @@ const UserRegistrationOrganizationForm = () => {
 				<div className="react-userRegisterForm-organization-grid-item4 react-userRegisterForm-organization-grid-format">
 					<label>Organization Type</label>
 					<br />
-					<input
-						type="text"
-						name="organization_type"
-						placeholder="Organization Type"
-					/>
+					<select name="organization_type">
+						<option selected disabled>Select One</option>
+						<option value="596800000">Elementary School</option>
+						<option value="596800001">Middle School</option>
+						<option value="596800002">High School</option>
+						<option value="596800003">Alternative School</option>
+						<option value="596800004">Non-Profit Organization</option>
+						<option value="596800005">Treatment Center</option>
+						<option value="596800006">Company</option>
+						<option value="596800007">Other</option>
+					</select>
 				</div>
 
 				<div className="react-userRegisterForm-organization-grid-item5 react-userRegisterForm-organization-grid-format">
