@@ -1,5 +1,10 @@
+.react-userRegisterForm-organization-grid-format {
+	text-align: left;
+    margin-left: 45px;
+}
+
 .react-userRegisterForm-organization-grid-container {
-    display: grid;
-    grid-row-gap: 8px;
-    grid-template-columns: auto auto auto;
+	display: grid;
+	grid-row-gap: 8px;
+	grid-template-columns: auto auto auto;
 }
