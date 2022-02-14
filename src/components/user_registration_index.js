@@ -9,12 +9,18 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself
 	 *****************************************************************************/
-	const getSelfFormValuesHandler = (contactInfoData) => {
+	const getSelfFormValuesHandler = (contactInfoData, camperInfoData) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newContactInfoData = {
 			...contactInfoData,
 			msnfp_householdrelationship: "844060000",
 		};
+
+		// I need to find a way to grab the new created contact's id
+		const newCamperInfoData = {
+			...camperInfoData,
+			crbb4_contact_id: ""
+		}
 		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData);
 	};
@@ -92,7 +98,7 @@ const UserRegistrationIndex = () => {
 					value="Myself"
 					onClick={selectedFormHandler}
 				></input>
-				<label for="myself">Myself</label>
+				<label htmlFor="myself">Myself</label>
 				<input
 					type="radio"
 					id="dependent"
@@ -100,7 +106,7 @@ const UserRegistrationIndex = () => {
 					value="Dependent"
 					onClick={selectedFormHandler}
 				></input>
-				<label for="dependent">One or More Dependents</label>
+				<label htmlFor="dependent">One or More Dependents</label>
 				<input
 					type="radio"
 					id="organization"
@@ -108,7 +114,7 @@ const UserRegistrationIndex = () => {
 					value="Organization"
 					onClick={selectedFormHandler}
 				></input>
-				<label for="organization">An Organization</label>
+				<label htmlFor="organization">An Organization</label>
 			</div>
 			<div className="react-userRegisterForm">
 				<div>{renderSelectedForm(selectedForm)}</div>

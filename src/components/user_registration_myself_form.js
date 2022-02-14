@@ -38,11 +38,11 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredState(event.target.value);
 	};
 
-	// handle birthday
-	const [enteredBirthday, setEnteredBirthday] = useState("");
-	const birthdayChangeHandler = (event) => {
-		setEnteredBirthday(event.target.value);
-	};
+	// // handle birthday
+	// const [enteredBirthday, setEnteredBirthday] = useState("");
+	// const birthdayChangeHandler = (event) => {
+	// 	setEnteredBirthday(event.target.value);
+	// };
 
 	// handle country
 	const [enteredCountry, setEnteredCountry] = useState("");
@@ -92,14 +92,21 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 			lastname: enteredLastName,
 			address1_telephone1: enteredPhone,
 			address1_stateorprovince: enteredState,
-			birthdate: enteredBirthday,
+			// birthdate: enteredBirthday,
 			address1_country: enteredCountry,
-		}
+		};
+
+		// I still don't know what medication info means? same as medical condition?
+		const camperInfoData = {
+			crbb4_medications: enteredMedications,
+			crbb4_medical_conditions: enteredMedicationInfo,
+			crbb4_shirt_size: enteredShirtSize,
+			crbb4_emergencycontact: enteredEmergContactName,
+			crbb4_emergency_contact_phone: enteredEmergContactPhone,
+		};
 
 		// pass the data up to parent component (index.js)
-		onGetSelfFormValues(contactInfoData)
-
-		const camperInfoData = {}
+		onGetSelfFormValues(contactInfoData, camperInfoData);
 	};
 
 	return (
@@ -163,7 +170,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item7">
+				{/* <div className="react-userRegisterForm-myself-grid-item7">
 					<input
 						type="text"
 						name="birthday"
@@ -171,7 +178,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						onChange={birthdayChangeHandler}
 						required
 					/>
-				</div>
+				</div> */}
 				<div className="react-userRegisterForm-myself-grid-item8">
 					<input
 						type="text"

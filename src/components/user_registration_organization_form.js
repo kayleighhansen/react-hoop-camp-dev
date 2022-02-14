@@ -101,7 +101,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 					/>
 				</div>
 				<div className="react-userRegisterForm-organization-grid-item4 react-userRegisterForm-organization-grid-format">
-					<label for="orgType">Organization Type</label>
+					<label htmlFor="orgType">Organization Type</label>
 					<br />
 					<select
 						name="organization_type"
