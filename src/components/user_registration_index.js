@@ -19,8 +19,8 @@ const UserRegistrationIndex = () => {
 		// I need to find a way to grab the new created contact's id
 		const newCamperInfoData = {
 			...camperInfoData,
-			crbb4_contact_id: ""
-		}
+			crbb4_contact_id: "",
+		};
 		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData);
 	};
@@ -33,9 +33,13 @@ const UserRegistrationIndex = () => {
 			method: "POST",
 			body: JSON.stringify(newContactInfoData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
-		}).then((response) => {
-			console.log(response);
-		});
+		})
+			.then((response) => {
+				response.json();
+			})
+			.then((data) => {
+				console.log(data);
+			});
 	};
 
 	/******************************************************************************

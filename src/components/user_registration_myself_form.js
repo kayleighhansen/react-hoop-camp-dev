@@ -96,7 +96,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		// I still don't know what medication info means? same as medical condition?
+		// we use medication info here to represent medical condition in power apps
 		const camperInfoData = {
 			crbb4_medications: enteredMedications,
 			crbb4_medical_conditions: enteredMedicationInfo,
@@ -116,55 +116,73 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 				className="react-userRegisterForm-myself-grid-container"
 				onSubmit={submitHandler}
 			>
-				<div className="react-userRegisterForm-myself-grid-item1">
+				<div className="react-userRegisterForm-myself-grid-item1 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="fname">First Name</label>
+					<br />
 					<input
 						type="text"
 						name="first_name"
+						id="fname"
 						placeholder="First Name"
 						onChange={firstNameChangeHandler}
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item2">
+				<div className="react-userRegisterForm-myself-grid-item2 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="email">Email</label>
+					<br />
 					<input
 						type="text"
 						name="email"
+						id="email"
 						placeholder="Email"
 						onChange={emailChangeHandler}
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item3">
+				<div className="react-userRegisterForm-myself-grid-item3 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="city">City</label>
+					<br />
 					<input
 						type="text"
 						name="city"
+						id="city"
 						placeholder="City"
 						onChange={cityChangeHandler}
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item4">
+				<div className="react-userRegisterForm-myself-grid-item4 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="lname">Last Name</label>
+					<br />
 					<input
 						type="text"
 						name="last_name"
+						id="lname"
 						placeholder="Last Name"
 						onChange={lastNameChangeHandler}
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item5">
+				<div className="react-userRegisterForm-myself-grid-item5 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="phone">Phone</label>
+					<br />
 					<input
 						type="text"
 						name="phone"
+						id="phone"
 						placeholder="Phone"
 						onChange={phoneChangeHandler}
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item6">
+				<div className="react-userRegisterForm-myself-grid-item6 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="state">State</label>
+					<br />
 					<input
 						type="text"
 						name="state"
+						id="state"
 						placeholder="State"
 						onChange={stateChangeHandler}
 						required
@@ -179,10 +197,13 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div> */}
-				<div className="react-userRegisterForm-myself-grid-item8">
+				<div className="react-userRegisterForm-myself-grid-item8 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="country">Country</label>
+					<br />
 					<input
 						type="text"
 						name="country"
+						id="country"
 						placeholder="Country"
 						onChange={countryChangeHandler}
 						required
@@ -190,7 +211,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 				</div>
 				<br />
 				<br />
-				<div className="react-userRegisterForm-myself-grid-item9">
+				{/* <div className="react-userRegisterForm-myself-grid-item9">
 					<input
 						type="text"
 						name="medications"
@@ -229,7 +250,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						placeholder="Emergency Contact Phone"
 						onChange={emergContactPhoneChangeHandler}
 					/>
-				</div>
+				</div> */}
 
 				<button
 					className="react-userRegisterForm-myself-register-button"
