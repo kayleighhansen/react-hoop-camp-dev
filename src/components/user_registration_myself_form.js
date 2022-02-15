@@ -50,35 +50,37 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredCountry(event.target.value);
 	};
 
-	// handle medications
-	const [enteredMedications, setEnteredMedications] = useState("");
-	const medicationsChangeHandler = (event) => {
-		setEnteredMedications(event.target.value);
-	};
+	// Brother Thayne doesn't want us to have users fill out camper info while they register, so remove them now
 
-	// handle shirt size
-	const [enteredShirtSize, setEnteredShirtSize] = useState("");
-	const shirtSizeChangeHandler = (event) => {
-		setEnteredShirtSize(event.target.value);
-	};
+	// // handle medications
+	// const [enteredMedications, setEnteredMedications] = useState("");
+	// const medicationsChangeHandler = (event) => {
+	// 	setEnteredMedications(event.target.value);
+	// };
 
-	// handle medication info
-	const [enteredMedicationInfo, setEnteredMedicationInfo] = useState("");
-	const medicationInfoChangeHandler = (event) => {
-		setEnteredMedicationInfo(event.target.value);
-	};
+	// // handle shirt size
+	// const [enteredShirtSize, setEnteredShirtSize] = useState("");
+	// const shirtSizeChangeHandler = (event) => {
+	// 	setEnteredShirtSize(event.target.value);
+	// };
 
-	// handle emergency contact name
-	const [enteredEmergContactName, setEnteredEmergContactName] = useState("");
-	const emergContactNameChangeHandler = (event) => {
-		setEnteredEmergContactName(event.target.value);
-	};
+	// // handle medication info
+	// const [enteredMedicationInfo, setEnteredMedicationInfo] = useState("");
+	// const medicationInfoChangeHandler = (event) => {
+	// 	setEnteredMedicationInfo(event.target.value);
+	// };
 
-	// handle emergency contact phone
-	const [enteredEmergContactPhone, setEnteredEmergContactPhone] = useState("");
-	const emergContactPhoneChangeHandler = (event) => {
-		setEnteredEmergContactPhone(event.target.value);
-	};
+	// // handle emergency contact name
+	// const [enteredEmergContactName, setEnteredEmergContactName] = useState("");
+	// const emergContactNameChangeHandler = (event) => {
+	// 	setEnteredEmergContactName(event.target.value);
+	// };
+
+	// // handle emergency contact phone
+	// const [enteredEmergContactPhone, setEnteredEmergContactPhone] = useState("");
+	// const emergContactPhoneChangeHandler = (event) => {
+	// 	setEnteredEmergContactPhone(event.target.value);
+	// };
 
 	const submitHandler = (event) => {
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
@@ -96,17 +98,17 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		// we use medication info here to represent medical condition in power apps
-		const camperInfoData = {
-			crbb4_medications: enteredMedications,
-			crbb4_medical_conditions: enteredMedicationInfo,
-			crbb4_shirt_size: enteredShirtSize,
-			crbb4_emergencycontact: enteredEmergContactName,
-			crbb4_emergency_contact_phone: enteredEmergContactPhone,
-		};
+		// // we use medication info here to represent medical condition in power apps
+		// const camperInfoData = {
+		// 	crbb4_medications: enteredMedications,
+		// 	crbb4_medical_conditions: enteredMedicationInfo,
+		// 	crbb4_shirt_size: enteredShirtSize,
+		// 	crbb4_emergencycontact: enteredEmergContactName,
+		// 	crbb4_emergency_contact_phone: enteredEmergContactPhone,
+		// };
 
 		// pass the data up to parent component (index.js)
-		onGetSelfFormValues(contactInfoData, camperInfoData);
+		onGetSelfFormValues(contactInfoData);
 	};
 
 	return (

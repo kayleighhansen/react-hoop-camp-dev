@@ -9,25 +9,24 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself
 	 *****************************************************************************/
-	const getSelfFormValuesHandler = (contactInfoData, camperInfoData) => {
+	const getSelfFormValuesHandler = (contactInfoData) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newContactInfoData = {
 			...contactInfoData,
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// I need to find a way to grab the new created contact's id
-		const newCamperInfoData = {
-			...camperInfoData,
-			crbb4_contact_id: "",
-		};
+		// const newCamperInfoData = {
+		// 	...camperInfoData,
+		// 	crbb4_contact_id: "",
+		// };
 		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData);
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
 	const createNewSingleUserContact = (newContactInfoData) => {
-		console.log(newContactInfoData);
+		// console.log(newContactInfoData);
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
@@ -35,7 +34,7 @@ const UserRegistrationIndex = () => {
 			headers: { "Content-type": "application/json; charset=UTF-8" },
 		})
 			.then((response) => {
-				response.json();
+				return response.json();
 			})
 			.then((data) => {
 				console.log(data);
