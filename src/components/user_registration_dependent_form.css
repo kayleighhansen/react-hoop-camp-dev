@@ -1,3 +1,11 @@
+/* this is for the Myself part  */
+.react-userRegisterForm-dependent-myself-grid-container {
+	display: grid;
+	grid-row-gap: 8px;
+	grid-template-columns: auto auto auto;
+}
+
+/* this is for the Dependent(s) part */
 .react-userRegisterForm-dependent-grid-container {
 	display: grid;
 	grid-row-gap: 8px;
@@ -5,14 +13,18 @@
 }
 
 .react-userRegisterForm-dependent-add-button {
-    margin-top: 16px;
-    width: 350px;
-    height: 30px;
-    border: none;
-    background: rgb(77, 126, 218);
-    color: white;
-    font-style: italic;
-    font-size: 16px;
+	margin-top: 16px;
+	width: 350px;
+	height: 30px;
+	border: none;
+	background: rgb(77, 126, 218);
+	color: white;
+	font-style: italic;
+	font-size: 16px;
 }
 
-
+.react-userRegisterForm-dependent-grid-format {
+	text-align: left;
+	margin-left: 45px;
+	margin-right: 0;
+}

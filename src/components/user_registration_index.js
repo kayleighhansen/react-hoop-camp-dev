@@ -64,6 +64,14 @@ const UserRegistrationIndex = () => {
 		});
 	};
 
+	/******************************************************************************
+	 * This section is for Registering for Myself & Dependent(s)
+	 *****************************************************************************/
+	const getDependentFormValuesHandler = () => {};
+
+
+
+
 	// set up this to catch what the user select on the radio button
 	const [selectedForm, setSelectedForm] = useState("");
 	const selectedFormHandler = (event) => {
@@ -80,7 +88,11 @@ const UserRegistrationIndex = () => {
 					></UserRegistrationMyselfForm>
 				);
 			case "Dependent":
-				return <UserRegistrationDependentForm></UserRegistrationDependentForm>;
+				return (
+					<UserRegistrationDependentForm
+						onGetDependentFormValues={getDependentFormValuesHandler}
+					></UserRegistrationDependentForm>
+				);
 			case "Organization":
 				return (
 					<UserRegistrationOrganizationForm
@@ -112,7 +124,7 @@ const UserRegistrationIndex = () => {
 					value="Dependent"
 					onClick={selectedFormHandler}
 				></input>
-				<label htmlFor="dependent">One or More Dependents</label>
+				<label htmlFor="dependent">Myself & Dependent(s)</label>
 				<input
 					type="radio"
 					id="organization"
