@@ -14,6 +14,20 @@
 
 .react-userRegisterForm-dependent-add-button {
 	margin-top: 16px;
+	width: 200px;
+	height: 30px;
+	border: none;
+	background: rgb(0, 0, 0);
+	color: white;
+	font-style: italic;
+	font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* this is the button for registering accounts for both myself and dependent(s) */
+.react-userRegisterForm-dependent-register-button {
+	margin-top: 16px;
 	width: 350px;
 	height: 30px;
 	border: none;
@@ -21,8 +35,19 @@
 	color: white;
 	font-style: italic;
 	font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* this is for all the input fields under Myself part */
+.react-userRegisterForm-dependent-myself-grid-format {
+	text-align: left;
+	margin-left: 45px;
+	margin-right: 0;
+}
+
+/* this is for fname and lname in Dependents part */
 .react-userRegisterForm-dependent-grid-format {
 	text-align: left;
 	margin-left: 45px;

@@ -49,7 +49,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 			<form>
 				<h3>Myself</h3>
 				<div className="react-userRegisterForm-dependent-myself-grid-container">
-					<div className="react-userRegisterForm-dependent-grid-item1 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item1 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="fname">First Name</label>
 						<br />
 						<input
@@ -61,7 +61,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item2 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item2 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="email">Email</label>
 						<br />
 						<input
@@ -73,7 +73,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item3 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item3 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="city">City</label>
 						<br />
 						<input
@@ -85,7 +85,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item4 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item4 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="lname">Last Name</label>
 						<br />
 						<input
@@ -97,7 +97,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item5 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item5 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="phone">Phone</label>
 						<br />
 						<input
@@ -109,7 +109,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item6 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item6 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="state">State</label>
 						<br />
 						<input
@@ -121,7 +121,7 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							required
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item8 react-userRegisterForm-dependent-grid-format">
+					<div className="react-userRegisterForm-dependent-grid-item8 react-userRegisterForm-dependent-myself-grid-format">
 						<label htmlFor="country">Country</label>
 						<br />
 						<input
@@ -136,29 +136,34 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 				</div>
 				<h3>Dependent(s)</h3>
 				<div className="react-userRegisterForm-dependent-grid-container">
-					<div className="react-userRegisterForm-dependent-grid-item9">
+					<div className="react-userRegisterForm-dependent-grid-item9 react-userRegisterForm-dependent-grid-format">
 						<label htmlFor="dependent_fname">Dependent First Name</label>
 						<br />
 						<input
 							id="dependent_fname"
 							type="text"
 							name="dependent_first_name"
-							placeholder="First Name"
+							placeholder="Dependent First Name"
 						/>
 					</div>
-					<div className="react-userRegisterForm-dependent-grid-item10">
+					<div className="react-userRegisterForm-dependent-grid-item10 react-userRegisterForm-dependent-grid-format">
 						<label htmlFor="dependent_lname">Dependent Last Name</label>
 						<br />
 						<input
 							id="dependent_lname"
 							type="text"
 							name="dependent_last_name"
-							placeholder="Last Name"
+							placeholder="Dependent Last Name"
 						/>
 					</div>
+					<div className="react-userRegisterForm-dependent-grid-format">
+						<button className="react-userRegisterForm-dependent-add-button">
+							Add More Dependent
+						</button>
+					</div>
 				</div>
-				<button className="react-userRegisterForm-dependent-add-button">
-					Add Dependent
+				<button className="react-userRegisterForm-dependent-register-button">
+					Register for All
 				</button>
 			</form>
 		</div>
