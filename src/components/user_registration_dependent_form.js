@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./user_registration_dependent_form.css";
 
-const UserRegistrationDependentForm = ({ onGet }) => {
+const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 	// handle first name
 	const [enteredFirstName, setEnteredFirstName] = useState("");
 	const firstNameChangeHandler = (event) => {
@@ -44,9 +44,49 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 		setEnteredCountry(event.target.value);
 	};
 
+	// handle dependent first name
+	const [enteredDepFirstName, setEnteredDepFirstName] = useState("");
+	const depFirstNameChangeHandler = (event) => {
+		setEnteredDepFirstName(event.target.value);
+	};
+
+	// handle dependent first name
+	const [enteredDepLastName, setEnteredDepLastName] = useState("");
+	const depLastNameChangeHandler = (event) => {
+		setEnteredDepLastName(event.target.value);
+	};
+
+	const submitHandler = (event) => {
+		// prevent the form from being sending to the server, so the page will NOT be reloaded
+		event.preventDefault();
+
+		// for all the key names in the object, we must match what we have in the C# controller
+		const myselfData = {
+			firstname: enteredFirstName,
+			emailaddress1: enteredEmail,
+			address1_city: enteredCity,
+			lastname: enteredLastName,
+			address1_telephone1: enteredPhone,
+			address1_stateorprovince: enteredState,
+			address1_country: enteredCountry,
+		};
+
+		console.log(myselfData);
+
+		const dependentData = {
+			firstname: enteredDepFirstName,
+			lastname: enteredDepLastName,
+		};
+
+		console.log(dependentData);
+
+		// pass data back to the parent component
+		onGetDependentFormValues(myselfData, dependentData);
+	};
+
 	return (
 		<div className="react-userRegisterForm-dependent">
-			<form>
+			<form onSubmit={submitHandler}>
 				<h3>Myself</h3>
 				<div className="react-userRegisterForm-dependent-myself-grid-container">
 					<div className="react-userRegisterForm-dependent-grid-item1 react-userRegisterForm-dependent-myself-grid-format">
@@ -144,6 +184,8 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							type="text"
 							name="dependent_first_name"
 							placeholder="Dependent First Name"
+							onChange={depFirstNameChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-dependent-grid-item10 react-userRegisterForm-dependent-grid-format">
@@ -154,15 +196,23 @@ const UserRegistrationDependentForm = ({ onGet }) => {
 							type="text"
 							name="dependent_last_name"
 							placeholder="Dependent Last Name"
+							onChange={depLastNameChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-dependent-grid-format">
-						<button className="react-userRegisterForm-dependent-add-button">
+						<button
+							type="button"
+							className="react-userRegisterForm-dependent-add-button"
+						>
 							Add More Dependent
 						</button>
 					</div>
 				</div>
-				<button className="react-userRegisterForm-dependent-register-button">
+				<button
+					className="react-userRegisterForm-dependent-register-button"
+					type="submit"
+				>
 					Register for All
 				</button>
 			</form>

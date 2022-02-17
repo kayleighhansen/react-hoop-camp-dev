@@ -67,10 +67,21 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself & Dependent(s)
 	 *****************************************************************************/
-	const getDependentFormValuesHandler = () => {};
+	const getDependentFormValuesHandler = (myselfData, dependentData) => {
+		// we need to include the household relationship because we want to create a household automatically for every single user
+		const newMyselfData = {
+			...myselfData,
+			msnfp_householdrelationship: "844060000",
+		};
 
-
-
+		const newDependentData = {
+			...dependentData,
+			// when we create a dependent, we set up the relationship to be a "member"
+			msnfp_householdrelationship: "844060001",
+			// the id is required because we need to know which household to add this dependent into
+			msnfp_HouseholdId: "",
+		};
+	};
 
 	// set up this to catch what the user select on the radio button
 	const [selectedForm, setSelectedForm] = useState("");
