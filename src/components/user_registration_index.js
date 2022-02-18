@@ -26,7 +26,6 @@ const UserRegistrationIndex = () => {
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
 	const createNewSingleUserContact = (newContactInfoData) => {
-		// console.log(newContactInfoData);
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
@@ -34,6 +33,11 @@ const UserRegistrationIndex = () => {
 			headers: { "Content-type": "application/json; charset=UTF-8" },
 		})
 			.then((response) => {
+				// error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// return a promise for next then to handle
 				return response.json();
 			})
 			.then((data) => {
@@ -81,6 +85,65 @@ const UserRegistrationIndex = () => {
 			// the id is required because we need to know which household to add this dependent into
 			msnfp_HouseholdId: "",
 		};
+
+		createNewSingleUserContactAndDependent(newMyselfData, newDependentData);
+	};
+
+	// this function calls our C# API and the C# API will call dynamics to save the data into database
+	const createNewSingleUserContactAndDependent = (
+		newMyselfData,
+		newDependentData
+	) => {
+		// I learned that I MUST have the headers here otherwise I got a 415 error
+		fetch("https://localhost:44398/contacts/createContact", {
+			method: "POST",
+			body: JSON.stringify(newMyselfData),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		})
+			.then((response) => {
+				// error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// return a promise for next then to handle
+				return response.json();
+			})
+			.then((data) => {
+				console.log("Created a new single user & household successfully.");
+				console.log(data);
+				console.log("New Household Id: ");
+				const newHouseHoldId = data._msnfp_householdid_value;
+				console.log(newHouseHoldId);
+				createNewDependent(newHouseHoldId, newDependentData);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const createNewDependent = (newHouseHoldId, newDependentData) => {
+		// must add the newHouseHoldId, so it knows which household this dependent will be added in
+		newDependentData.msnfp_HouseholdId = newHouseHoldId;
+		fetch("https://localhost:44398/contacts/createChildInHousehold", {
+			method: "POST",
+			body: JSON.stringify(newDependentData),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		})
+			.then((response) => {
+				// error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// return a promise for next then to handle
+				return response.json();
+			})
+			.then((data) => {
+				console.log("Created a new dependent successfully.");
+				console.log(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	// set up this to catch what the user select on the radio button

@@ -71,14 +71,10 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		console.log(myselfData);
-
 		const dependentData = {
 			firstname: enteredDepFirstName,
 			lastname: enteredDepLastName,
 		};
-
-		console.log(dependentData);
 
 		// pass data back to the parent component
 		onGetDependentFormValues(myselfData, dependentData);
