@@ -56,38 +56,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredPassword(event.target.value);
 	};
 
-	// Brother Thayne doesn't want us to have users fill out camper info while they register, so remove them now
-
-	// // handle medications
-	// const [enteredMedications, setEnteredMedications] = useState("");
-	// const medicationsChangeHandler = (event) => {
-	// 	setEnteredMedications(event.target.value);
-	// };
-
-	// // handle shirt size
-	// const [enteredShirtSize, setEnteredShirtSize] = useState("");
-	// const shirtSizeChangeHandler = (event) => {
-	// 	setEnteredShirtSize(event.target.value);
-	// };
-
-	// // handle medication info
-	// const [enteredMedicationInfo, setEnteredMedicationInfo] = useState("");
-	// const medicationInfoChangeHandler = (event) => {
-	// 	setEnteredMedicationInfo(event.target.value);
-	// };
-
-	// // handle emergency contact name
-	// const [enteredEmergContactName, setEnteredEmergContactName] = useState("");
-	// const emergContactNameChangeHandler = (event) => {
-	// 	setEnteredEmergContactName(event.target.value);
-	// };
-
-	// // handle emergency contact phone
-	// const [enteredEmergContactPhone, setEnteredEmergContactPhone] = useState("");
-	// const emergContactPhoneChangeHandler = (event) => {
-	// 	setEnteredEmergContactPhone(event.target.value);
-	// };
-
 	const submitHandler = (event) => {
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
@@ -103,15 +71,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 			// birthdate: enteredBirthday,
 			address1_country: enteredCountry,
 		};
-
-		// // we use medication info here to represent medical condition in power apps
-		// const camperInfoData = {
-		// 	crbb4_medications: enteredMedications,
-		// 	crbb4_medical_conditions: enteredMedicationInfo,
-		// 	crbb4_shirt_size: enteredShirtSize,
-		// 	crbb4_emergencycontact: enteredEmergContactName,
-		// 	crbb4_emergency_contact_phone: enteredEmergContactPhone,
-		// };
 
 		// pass the data up to parent component (index.js)
 		onGetSelfFormValues(contactInfoData);
@@ -229,49 +188,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<br />
-				<br />
-				{/* <div className="react-userRegisterForm-myself-grid-item9">
-					<input
-						type="text"
-						name="medications"
-						placeholder="Medications"
-						onChange={medicationsChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item10">
-					<input
-						type="text"
-						name="shirt_size"
-						placeholder="Shirt Size"
-						onChange={shirtSizeChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item11">
-					<input
-						type="text"
-						name="medication_information"
-						placeholder="Medication Information"
-						onChange={medicationInfoChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item12">
-					<input
-						type="text"
-						name="emergency_contact_name"
-						placeholder="Emergency Contact Name"
-						onChange={emergContactNameChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item13">
-					<input
-						type="text"
-						name="emergency_contact_phone"
-						placeholder="Emergency Contact Phone"
-						onChange={emergContactPhoneChangeHandler}
-					/>
-				</div> */}
-
 				<button
 					className="react-userRegisterForm-myself-register-button"
 					type="submit"
