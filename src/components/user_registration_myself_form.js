@@ -50,6 +50,12 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredCountry(event.target.value);
 	};
 
+	// handle password
+	const [enteredPassword, setEnteredPassword] = useState("");
+	const passwordChangeHandler = (event) => {
+		setEnteredPassword(event.target.value);
+	};
+
 	// Brother Thayne doesn't want us to have users fill out camper info while they register, so remove them now
 
 	// // handle medications
@@ -130,6 +136,18 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
+				<div className="react-userRegisterForm-myself-grid-item4 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="lname">Last Name</label>
+					<br />
+					<input
+						type="text"
+						name="last_name"
+						id="lname"
+						placeholder="Last Name"
+						onChange={lastNameChangeHandler}
+						required
+					/>
+				</div>
 				<div className="react-userRegisterForm-myself-grid-item2 react-userRegisterForm-myself-grid-format">
 					<label htmlFor="email">Email</label>
 					<br />
@@ -151,30 +169,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						id="city"
 						placeholder="City"
 						onChange={cityChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item4 react-userRegisterForm-myself-grid-format">
-					<label htmlFor="lname">Last Name</label>
-					<br />
-					<input
-						type="text"
-						name="last_name"
-						id="lname"
-						placeholder="Last Name"
-						onChange={lastNameChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-item5 react-userRegisterForm-myself-grid-format">
-					<label htmlFor="phone">Phone</label>
-					<br />
-					<input
-						type="text"
-						name="phone"
-						id="phone"
-						placeholder="Phone"
-						onChange={phoneChangeHandler}
 						required
 					/>
 				</div>
@@ -208,6 +202,30 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						id="country"
 						placeholder="Country"
 						onChange={countryChangeHandler}
+						required
+					/>
+				</div>
+				<div className="react-userRegisterForm-myself-grid-item5 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="phone">Phone</label>
+					<br />
+					<input
+						type="text"
+						name="phone"
+						id="phone"
+						placeholder="Phone"
+						onChange={phoneChangeHandler}
+						required
+					/>
+				</div>
+				<div className="react-userRegisterForm-myself-grid-item9 react-userRegisterForm-myself-grid-format">
+					<label htmlFor="password">Password</label>
+					<br />
+					<input
+						type="text"
+						name="password"
+						id="password"
+						placeholder="at least 4 characters long"
+						onChange={passwordChangeHandler}
 						required
 					/>
 				</div>
