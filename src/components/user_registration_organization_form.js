@@ -84,7 +84,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 					<label>Email</label>
 					<br />
 					<input
-						type="text"
+						type="email"
 						name="email"
 						placeholder="Email"
 						onChange={orgEmailChangeHandler}

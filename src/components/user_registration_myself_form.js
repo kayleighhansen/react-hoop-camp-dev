@@ -129,7 +129,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					<label htmlFor="email">Email</label>
 					<br />
 					<input
-						type="text"
+						type="email"
 						name="email"
 						id="email"
 						placeholder="Email"
@@ -199,9 +199,10 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					<br />
 					<input
 						type="text"
+						minlength="4"
 						name="password"
 						id="password"
-						placeholder="at least 4 characters long"
+						placeholder="At least 4 characters long"
 						onChange={passwordChangeHandler}
 						required
 					/>
