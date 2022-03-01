@@ -9,7 +9,11 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself
 	 *****************************************************************************/
-	const getSelfFormValuesHandler = (contactInfoData, enteredFirstName, enteredPassword) => {
+	const getSelfFormValuesHandler = (
+		contactInfoData,
+		enteredFirstName,
+		enteredPassword
+	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newContactInfoData = {
 			...contactInfoData,
@@ -20,14 +24,17 @@ const UserRegistrationIndex = () => {
 		const newCredentialInfoData = {
 			username: enteredFirstName,
 			password: enteredPassword,
-		}
+		};
 
 		// call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData, newCredentialInfoData);
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
-	const createNewSingleUserContact = (newContactInfoData, newCredentialInfoData) => {
+	const createNewSingleUserContact = (
+		newContactInfoData,
+		newCredentialInfoData
+	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
@@ -44,8 +51,8 @@ const UserRegistrationIndex = () => {
 			})
 			.then((data) => {
 				// this api returns the newly created contactid & the _msnfp_householdid_value
+				console.log("Created a new user successfully!");
 				console.log(data);
-
 
 				// add new contact id into the credential data
 				newCredentialInfoData.contactID = data.contactid;
@@ -54,11 +61,25 @@ const UserRegistrationIndex = () => {
 				// I will need to use this new contact id to create a new credential
 				// This endpoint requires username, password, and contactid, it will hash the password before saving to database
 				// make a second request and returns a new promise
-				// return fetch("https://localhost:44398/credentials/createCredential", {
-				// 	method: "POST",
-				// 	body: JSON.stringify(newContactInfoData),
-				// 	headers: { "Content-type": "application/json; charset=UTF-8" },
-				// })
+				return fetch("https://localhost:44398/credentials/createCredential", {
+					method: "POST",
+					body: JSON.stringify(newCredentialInfoData),
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+				});
+			})
+			// use another .then to chain the second request
+			.then((response) => {
+				// error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// return a promise for next then to handle
+				return response.json();
+			})
+			.then((data) => {
+				console.log("Created a new credential successfully!");
+				// this data should be the result of creating a new credential which should contain a new credential id
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
