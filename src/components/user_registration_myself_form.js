@@ -91,7 +91,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		};
 
 		// pass the data up to parent component (index.js)
-		onGetSelfFormValues(contactInfoData);
+		onGetSelfFormValues(contactInfoData, enteredFirstName, enteredPassword);
 	};
 
 	return (

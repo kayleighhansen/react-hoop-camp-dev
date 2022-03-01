@@ -9,23 +9,25 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself
 	 *****************************************************************************/
-	const getSelfFormValuesHandler = (contactInfoData) => {
+	const getSelfFormValuesHandler = (contactInfoData, enteredFirstName, enteredPassword) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newContactInfoData = {
 			...contactInfoData,
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// const newCamperInfoData = {
-		// 	...camperInfoData,
-		// 	crbb4_contact_id: "",
-		// };
+		// this will be used to create a new credential
+		const newCredentialInfoData = {
+			username: enteredFirstName,
+			password: enteredPassword,
+		}
+
 		// call this function to have it call our C# API
-		createNewSingleUserContact(newContactInfoData);
+		createNewSingleUserContact(newContactInfoData, newCredentialInfoData);
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
-	const createNewSingleUserContact = (newContactInfoData) => {
+	const createNewSingleUserContact = (newContactInfoData, newCredentialInfoData) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
 			method: "POST",
@@ -41,7 +43,22 @@ const UserRegistrationIndex = () => {
 				return response.json();
 			})
 			.then((data) => {
+				// this api returns the newly created contactid & the _msnfp_householdid_value
 				console.log(data);
+
+
+				// add new contact id into the credential data
+				newCredentialInfoData.contactID = data.contactid;
+				console.log(newCredentialInfoData);
+
+				// I will need to use this new contact id to create a new credential
+				// This endpoint requires username, password, and contactid, it will hash the password before saving to database
+				// make a second request and returns a new promise
+				// return fetch("https://localhost:44398/credentials/createCredential", {
+				// 	method: "POST",
+				// 	body: JSON.stringify(newContactInfoData),
+				// 	headers: { "Content-type": "application/json; charset=UTF-8" },
+				// })
 			})
 			.catch((err) => {
 				console.log(err);
