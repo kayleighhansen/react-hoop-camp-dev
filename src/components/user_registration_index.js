@@ -116,6 +116,9 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
+		console.log("Received all dependent data from child and showed in parent component: ");
+		console.log(dependentData);
+
 		const newDependentData = {
 			...dependentData,
 			// when we create a dependent, we set up the relationship to be a "member"

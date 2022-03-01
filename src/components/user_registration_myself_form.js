@@ -199,7 +199,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					<br />
 					<input
 						type="text"
-						minlength="4"
+						minLength="4"
 						name="password"
 						id="password"
 						placeholder="At least 4 characters long"

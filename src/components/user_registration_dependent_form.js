@@ -44,16 +44,45 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		setEnteredCountry(event.target.value);
 	};
 
-	// handle dependent first name
-	const [enteredDepFirstName, setEnteredDepFirstName] = useState("");
-	const depFirstNameChangeHandler = (event) => {
-		setEnteredDepFirstName(event.target.value);
+	// handle the change of dependent first name
+	const depFirstNameChangeHandler = (event, index) => {
+		const newList = [...dependentList];
+		newList[index].firstname = event.target.value;
+		setDependentList(newList);
 	};
 
-	// handle dependent first name
-	const [enteredDepLastName, setEnteredDepLastName] = useState("");
-	const depLastNameChangeHandler = (event) => {
-		setEnteredDepLastName(event.target.value);
+	// handle the change of dependent last name
+	const depLastNameChangeHandler = (event, index) => {
+		const newList = [...dependentList];
+		newList[index].lastname = event.target.value;
+		setDependentList(newList);
+	};
+
+	// set up the dependent id, starting with 1
+	const [dependentIndex, setDependentIndex] = useState(0);
+
+	// this will be used for all the dependent(s) fields
+	const [dependentList, setDependentList] = useState([
+		{ firstname: "", lastname: "", index: dependentIndex },
+	]);
+
+	// add new dependent
+	const addNewDependentHandler = () => {
+		setDependentList([
+			...dependentList,
+			{ firstname: "", lastname: "", index: dependentIndex + 1 },
+		]);
+		setDependentIndex(dependentIndex + 1);
+	};
+
+	console.log(dependentList);
+
+	// remove the dependent field (both first name and last name)
+	const removeDependentHandler = (dependentIndex) => {
+		const newList = [...dependentList];
+		// remove the clicked one based on its index in the array list
+		newList.splice(dependentIndex, 1);
+		setDependentList(newList);
 	};
 
 	const submitHandler = (event) => {
@@ -71,13 +100,8 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		const dependentData = {
-			firstname: enteredDepFirstName,
-			lastname: enteredDepLastName,
-		};
-
-		// pass data back to the parent component
-		onGetDependentFormValues(myselfData, dependentData);
+		// pass data up to the parent component
+		onGetDependentFormValues(myselfData, dependentList);
 	};
 
 	return (
@@ -172,34 +196,56 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 				</div>
 				<h3>Dependent(s)</h3>
 				<div className="react-userRegisterForm-dependent-grid-container">
-					<div className="react-userRegisterForm-dependent-grid-item9 react-userRegisterForm-dependent-grid-format">
-						<label htmlFor="dependent_fname">Dependent First Name</label>
-						<br />
-						<input
-							id="dependent_fname"
-							type="text"
-							name="dependent_first_name"
-							placeholder="Dependent First Name"
-							onChange={depFirstNameChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-grid-item10 react-userRegisterForm-dependent-grid-format">
-						<label htmlFor="dependent_lname">Dependent Last Name</label>
-						<br />
-						<input
-							id="dependent_lname"
-							type="text"
-							name="dependent_last_name"
-							placeholder="Dependent Last Name"
-							onChange={depLastNameChangeHandler}
-							required
-						/>
-					</div>
+					{dependentList.map((dependent) => {
+						return (
+							<div key={dependent.index}>
+								<div className="react-userRegisterForm-dependent-grid-item9 react-userRegisterForm-dependent-grid-format">
+									<label htmlFor="dependent_fname">Dependent First Name</label>
+									<br />
+									<input
+										id="dependent_fname"
+										type="text"
+										name="dependent_first_name"
+										placeholder="Dependent First Name"
+										onChange={(event) =>
+											depFirstNameChangeHandler(event, dependent.index)
+										}
+										required
+									/>
+								</div>
+								<div className="react-userRegisterForm-dependent-grid-item10 react-userRegisterForm-dependent-grid-format">
+									<label htmlFor="dependent_lname">Dependent Last Name</label>
+									<br />
+									<input
+										id="dependent_lname"
+										type="text"
+										name="dependent_last_name"
+										placeholder="Dependent Last Name"
+										onChange={(event) =>
+											depLastNameChangeHandler(event, dependent.index)
+										}
+										required
+									/>
+								</div>
+								{dependentList.length > 1 && (
+									<div>
+										<button
+											type="button"
+											onClick={() => removeDependentHandler(dependent.index)}
+										>
+											Remove
+										</button>
+									</div>
+								)}
+							</div>
+						);
+					})}
+
 					<div className="react-userRegisterForm-dependent-grid-format">
 						<button
 							type="button"
 							className="react-userRegisterForm-dependent-add-button"
+							onClick={addNewDependentHandler}
 						>
 							Add More Dependent
 						</button>
