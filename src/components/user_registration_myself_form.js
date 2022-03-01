@@ -56,9 +56,27 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredPassword(event.target.value);
 	};
 
+	// this is used for form error validation, set it to true because we don't want to show any erros at beginning
+	const [formIsValid, setFormIsValid] = useState(true);
+
 	const submitHandler = (event) => {
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
+
+		// if any field is empty, set the formIsValid to false and display the error message
+		if (
+			enteredFirstName === "" ||
+			enteredEmail === "" ||
+			enteredCity === "" ||
+			enteredLastName === "" ||
+			enteredPhone === "" ||
+			enteredState === "" ||
+			enteredCountry === "" ||
+			enteredPassword === ""
+		) {
+			setFormIsValid(false);
+			return;
+		}
 
 		// for all the key names in the object, we must match what we have in the C# controller
 		const contactInfoData = {
@@ -188,6 +206,11 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
+				{!formIsValid && (
+					<div className="react-userRegisterForm-myself-error-message">
+						<h3>Please fill out all the fields.</h3>
+					</div>
+				)}
 				<button
 					className="react-userRegisterForm-myself-register-button"
 					type="submit"

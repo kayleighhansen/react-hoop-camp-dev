@@ -23,6 +23,11 @@
 	margin-right: 0;
 }
 
+.react-userRegisterForm-myself-error-message {
+	grid-column: 1/4;
+	color: red;
+}
+
 /* .react-userRegisterForm-myself-grid-item8 {
 	grid-column: 3/4;
 } */
