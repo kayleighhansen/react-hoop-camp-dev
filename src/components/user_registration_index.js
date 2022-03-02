@@ -116,16 +116,20 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		console.log("Received all dependent data from child and showed in parent component: ");
-		console.log(dependentData);
+		// why my dependentData has householdid event I added later down below?
+		// console.log(
+		// 	"Received all dependent data from child and showed in parent component: "
+		// );
+		// console.log(dependentData);
 
-		const newDependentData = {
-			...dependentData,
-			// when we create a dependent, we set up the relationship to be a "member"
-			msnfp_householdrelationship: "844060001",
-			// the id is required because we need to know which household to add this dependent into
-			msnfp_HouseholdId: "",
-		};
+		const newDependentData = [...dependentData];
+		// go through all the dependent(s) object and add the msnfp_householdrelationship & msnfp_HouseholdId into each object
+		newDependentData.forEach((dependent) => {
+			// when creating a dependent, set up the relationship to be a "member"
+			dependent.msnfp_householdrelationship = "844060001";
+			// the id is required because we need to know which household to add this dependent into, will get it down below after we create a new individual (parent)
+			dependent.msnfp_HouseholdId = "";
+		});
 
 		createNewSingleUserContactAndDependent(newMyselfData, newDependentData);
 	};
@@ -163,28 +167,38 @@ const UserRegistrationIndex = () => {
 	};
 
 	const createNewDependent = (newHouseHoldId, newDependentData) => {
-		// must add the newHouseHoldId, so it knows which household this dependent will be added in
-		newDependentData.msnfp_HouseholdId = newHouseHoldId;
-		fetch("https://localhost:44398/contacts/createChildInHousehold", {
-			method: "POST",
-			body: JSON.stringify(newDependentData),
-			headers: { "Content-type": "application/json; charset=UTF-8" },
-		})
-			.then((response) => {
-				// error checking
-				if (!response.ok) {
-					throw new Error("Network response was not OK");
-				}
-				// return a promise for next then to handle
-				return response.json();
+		// must add the newHouseHoldId to all dependent(s), so it knows which household this dependent will be added in
+		newDependentData.forEach((dependent) => {
+			dependent.msnfp_HouseholdId = newHouseHoldId;
+		});
+
+		console.log("About to call add dependent api");
+		console.log(newDependentData);
+
+		// we want to make an api call for each dependent
+		newDependentData.forEach((dependent) => {
+			// call backend api to create new dependent into the household
+			fetch("https://localhost:44398/contacts/createChildInHousehold", {
+				method: "POST",
+				body: JSON.stringify(dependent),
+				headers: { "Content-type": "application/json; charset=UTF-8" },
 			})
-			.then((data) => {
-				console.log("Created a new dependent successfully.");
-				console.log(data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+				.then((response) => {
+					// error checking
+					if (!response.ok) {
+						throw new Error("Network response was not OK");
+					}
+					// return a promise for next then to handle
+					return response.json();
+				})
+				.then((data) => {
+					console.log("Created a new dependent successfully.");
+					console.log(data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		});
 	};
 
 	// set up this to catch what the user select on the radio button
