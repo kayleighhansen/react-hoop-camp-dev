@@ -53,7 +53,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 				dependent.firstname = event.target.value;
 			}
 		});
-		// newList[id].firstname = event.target.value;
+
 		setDependentList(newList);
 	};
 
@@ -66,7 +66,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 				dependent.lastname = event.target.value;
 			}
 		});
-		// newList[id].lastname = event.target.value;
+
 		setDependentList(newList);
 	};
 

@@ -116,12 +116,6 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// why my dependentData has householdid event I added later down below?
-		// console.log(
-		// 	"Received all dependent data from child and showed in parent component: "
-		// );
-		// console.log(dependentData);
-
 		const newDependentData = [...dependentData];
 		// go through all the dependent(s) object and add the msnfp_householdrelationship & msnfp_HouseholdId into each object
 		newDependentData.forEach((dependent) => {
