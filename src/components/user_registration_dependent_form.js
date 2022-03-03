@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import "./user_registration_dependent_form.css";
 
 const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
@@ -45,43 +45,61 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 	};
 
 	// handle the change of dependent first name
-	const depFirstNameChangeHandler = (event, index) => {
+	const depFirstNameChangeHandler = (event, id) => {
 		const newList = [...dependentList];
-		newList[index].firstname = event.target.value;
+		newList.forEach((dependent) => {
+			// Only update the first name if the id matches, so we make sure to update the right dependent
+			if (dependent.id === id) {
+				dependent.firstname = event.target.value;
+			}
+		});
+		// newList[id].firstname = event.target.value;
 		setDependentList(newList);
 	};
 
 	// handle the change of dependent last name
-	const depLastNameChangeHandler = (event, index) => {
+	const depLastNameChangeHandler = (event, id) => {
 		const newList = [...dependentList];
-		newList[index].lastname = event.target.value;
+		newList.forEach((dependent) => {
+			// Only update the last name if the id matches, so we make sure to update the right dependent
+			if (dependent.id === id) {
+				dependent.lastname = event.target.value;
+			}
+		});
+		// newList[id].lastname = event.target.value;
 		setDependentList(newList);
 	};
 
 	// set up the dependent id, starting with 1
-	const [dependentIndex, setDependentIndex] = useState(0);
+	const [dependentID, setDependentID] = useState(1);
 
 	// this will be used for all the dependent(s) fields
 	const [dependentList, setDependentList] = useState([
-		{ firstname: "", lastname: "", index: dependentIndex },
+		{ firstname: "", lastname: "", id: dependentID },
 	]);
 
-	// add new dependent
+	// Add new dependent
 	const addNewDependentHandler = () => {
 		setDependentList([
 			...dependentList,
-			{ firstname: "", lastname: "", index: dependentIndex + 1 },
+			{ firstname: "", lastname: "", id: dependentID + 1 },
 		]);
-		setDependentIndex(dependentIndex + 1);
+		setDependentID(dependentID + 1);
 	};
 
 	console.log(dependentList);
 
 	// remove the dependent field (both first name and last name)
-	const removeDependentHandler = (dependentIndex) => {
-		const newList = [...dependentList];
-		// remove the clicked one based on its index in the array list
-		newList.splice(dependentIndex, 1);
+	const removeDependentHandler = (dependentID) => {
+		const newList = [];
+		// Remove the clicked one based on its id in the array list
+		console.log("this is the dependent id that I want to remove.");
+		console.log(dependentID);
+		dependentList.forEach((dependent) => {
+			if (dependent.id !== dependentID) {
+				newList.push(dependent);
+			};
+		});
 		setDependentList(newList);
 	};
 
@@ -198,7 +216,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 				<div className="react-userRegisterForm-dependent-grid-container">
 					{dependentList.map((dependent) => {
 						return (
-							<div key={dependent.index}>
+							<Fragment key={dependent.id}>
 								<div className="react-userRegisterForm-dependent-grid-item9 react-userRegisterForm-dependent-grid-format">
 									<label htmlFor="dependent_fname">Dependent First Name</label>
 									<br />
@@ -208,7 +226,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 										name="dependent_first_name"
 										placeholder="Dependent First Name"
 										onChange={(event) =>
-											depFirstNameChangeHandler(event, dependent.index)
+											depFirstNameChangeHandler(event, dependent.id)
 										}
 										required
 									/>
@@ -222,26 +240,28 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 										name="dependent_last_name"
 										placeholder="Dependent Last Name"
 										onChange={(event) =>
-											depLastNameChangeHandler(event, dependent.index)
+											depLastNameChangeHandler(event, dependent.id)
 										}
 										required
 									/>
 								</div>
 								{dependentList.length > 1 && (
-									<div>
+									<div className="react-userRegisterForm-dependent-remove-button">
 										<button
 											type="button"
-											onClick={() => removeDependentHandler(dependent.index)}
+											onClick={() => removeDependentHandler(dependent.id)}
 										>
 											Remove
 										</button>
 									</div>
 								)}
-							</div>
+							</Fragment>
 						);
 					})}
 
-					<div className="react-userRegisterForm-dependent-grid-format">
+					
+				</div>
+				<div className="react-userRegisterForm-dependent-grid-format">
 						<button
 							type="button"
 							className="react-userRegisterForm-dependent-add-button"
@@ -250,7 +270,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							Add More Dependent
 						</button>
 					</div>
-				</div>
 				<button
 					className="react-userRegisterForm-dependent-register-button"
 					type="submit"
