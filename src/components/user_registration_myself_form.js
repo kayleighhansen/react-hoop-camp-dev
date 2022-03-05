@@ -101,7 +101,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 				className="react-userRegisterForm-myself-grid-container"
 				onSubmit={submitHandler}
 			>
-				<div className="react-userRegisterForm-myself-grid-item1 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="fname">First Name</label>
 					<br />
 					<input
@@ -113,7 +113,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item4 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="lname">Last Name</label>
 					<br />
 					<input
@@ -125,7 +125,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item2 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="email">Email</label>
 					<br />
 					<input
@@ -137,7 +137,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item3 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="city">City</label>
 					<br />
 					<input
@@ -149,7 +149,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item6 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="state">State</label>
 					<br />
 					<input
@@ -161,7 +161,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				{/* <div className="react-userRegisterForm-myself-grid-item7">
+				{/* <div className="">
 					<input
 						type="text"
 						name="birthday"
@@ -170,7 +170,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div> */}
-				<div className="react-userRegisterForm-myself-grid-item8 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="country">Country</label>
 					<br />
 					<input
@@ -182,7 +182,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item5 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="phone">Phone</label>
 					<br />
 					<input
@@ -194,7 +194,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-item9 react-userRegisterForm-myself-grid-format">
+				<div className="react-userRegisterForm-myself-grid-format">
 					<label htmlFor="password">Password</label>
 					<br />
 					<input
