@@ -20,13 +20,13 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// this will be used to create a new credential
+		// This will be used to create a new credential, use first name as username
 		const newCredentialInfoData = {
 			username: enteredFirstName,
 			password: enteredPassword,
 		};
 
-		// call this function to have it call our C# API
+		// Call this function to have it call our C# API
 		createNewSingleUserContact(newContactInfoData, newCredentialInfoData);
 	};
 

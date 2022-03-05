@@ -76,10 +76,10 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		setDependentList(newList);
 	};
 
-	// set up the dependent id, starting with 1
+	// Set up the dependent id, starting with 1
 	const [dependentID, setDependentID] = useState(1);
 
-	// this will be used for all the dependent(s) fields
+	// This will be used for all the dependent(s) fields
 	const [dependentList, setDependentList] = useState([
 		{ firstname: "", lastname: "", id: dependentID },
 	]);
@@ -95,25 +95,40 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 
 	console.log(dependentList);
 
-	// remove the dependent field (both first name and last name)
+	// Remove the dependent field (both first name and last name)
 	const removeDependentHandler = (dependentID) => {
 		const newList = [];
 		// Remove the clicked one based on its id in the array list
-		console.log("this is the dependent id that I want to remove.");
-		console.log(dependentID);
 		dependentList.forEach((dependent) => {
 			if (dependent.id !== dependentID) {
 				newList.push(dependent);
 			}
 		});
+
 		setDependentList(newList);
 	};
 
+	// Handle user input when they click on "Register"
 	const submitHandler = (event) => {
-		// prevent the form from being sending to the server, so the page will NOT be reloaded
+		// Prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
 
-		// for all the key names in the object, we must match what we have in the C# controller
+		// If any field is empty, set the formIsValid to false and display the error message
+		if (
+			enteredFirstName === "" ||
+			enteredEmail === "" ||
+			enteredCity === "" ||
+			enteredLastName === "" ||
+			enteredPhone === "" ||
+			enteredState === "" ||
+			enteredCountry === "" ||
+			enteredPassword === ""
+		) {
+			// setFormIsValid(false);
+			return;
+		}
+
+		// For all the key names in the object, we must match what we have in the C# controller
 		const myselfData = {
 			firstname: enteredFirstName,
 			emailaddress1: enteredEmail,
@@ -124,7 +139,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		// pass data up to the parent component
+		// Pass data up to the parent component, both myselft and all the dependent(s) data
 		onGetDependentFormValues(myselfData, dependentList);
 	};
 
