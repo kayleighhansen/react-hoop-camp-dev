@@ -136,10 +136,14 @@ const UserRegistrationIndex = () => {
 			dependent.msnfp_HouseholdId = "";
 		});
 
-		createNewSingleUserContactAndDependent(newMyselfData, newCredentialInfoData, newDependentData);
+		createNewSingleUserContactAndDependent(
+			newMyselfData,
+			newCredentialInfoData,
+			newDependentData
+		);
 	};
 
-	// this function calls our C# API and the C# API will call dynamics to save the data into database
+	// This function calls our C# API and the C# API will call dynamics to save the data into database
 	const createNewSingleUserContactAndDependent = (
 		newMyselfData,
 		newCredentialInfoData,
@@ -162,10 +166,44 @@ const UserRegistrationIndex = () => {
 			.then((data) => {
 				console.log("Created a new single user & household successfully.");
 				console.log(data);
+
+				// Add new contact id into the credential data 	because I will need to use this new contact id to create a new credential
+				newCredentialInfoData.contactID = data.contactid;
+				console.log(newCredentialInfoData);
+
+				// Create a new credential for the single user
+				createNewCrendential(newCredentialInfoData);
+
 				console.log("New Household Id: ");
 				const newHouseHoldId = data._msnfp_householdid_value;
 				console.log(newHouseHoldId);
+				// Create new dependent(s)
 				createNewDependent(newHouseHoldId, newDependentData);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// Create a new credential for a single user
+	const createNewCrendential = (newCredentialInfoData) => {
+		// This endpoint requires username, password, and contactid, it will hash the password before saving to database
+		fetch("https://localhost:44398/credentials/createCredential", {
+			method: "POST",
+			body: JSON.stringify(newCredentialInfoData),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		})
+			.then((response) => {
+				// Error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// Return a promise for next then to handle
+				return response.json();
+			})
+			.then((data) => {
+				console.log("Created a new credential successfully.");
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
