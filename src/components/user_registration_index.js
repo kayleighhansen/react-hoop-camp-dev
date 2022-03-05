@@ -109,28 +109,40 @@ const UserRegistrationIndex = () => {
 	/******************************************************************************
 	 * This section is for Registering for Myself & Dependent(s)
 	 *****************************************************************************/
-	const getDependentFormValuesHandler = (myselfData, dependentData) => {
+	const getDependentFormValuesHandler = (
+		myselfData,
+		dependentData,
+		enteredFirstName,
+		enteredPassword
+	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newMyselfData = {
 			...myselfData,
 			msnfp_householdrelationship: "844060000",
 		};
 
+		// This will be used to create a new credential, use first name as username
+		const newCredentialInfoData = {
+			username: enteredFirstName,
+			password: enteredPassword,
+		};
+
 		const newDependentData = [...dependentData];
-		// go through all the dependent(s) object and add the msnfp_householdrelationship & msnfp_HouseholdId into each object
+		// Go through all the dependent(s) object and add the msnfp_householdrelationship & msnfp_HouseholdId into each object
 		newDependentData.forEach((dependent) => {
-			// when creating a dependent, set up the relationship to be a "member"
+			// When creating a dependent, set up the relationship to be a "member"
 			dependent.msnfp_householdrelationship = "844060001";
-			// the id is required because we need to know which household to add this dependent into, will get it down below after we create a new individual (parent)
+			// The id is required because we need to know which household to add this dependent into, will get it down below after we create a new individual (parent)
 			dependent.msnfp_HouseholdId = "";
 		});
 
-		createNewSingleUserContactAndDependent(newMyselfData, newDependentData);
+		createNewSingleUserContactAndDependent(newMyselfData, newCredentialInfoData, newDependentData);
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
 	const createNewSingleUserContactAndDependent = (
 		newMyselfData,
+		newCredentialInfoData,
 		newDependentData
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error

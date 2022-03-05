@@ -124,7 +124,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			enteredCountry === "" ||
 			enteredPassword === ""
 		) {
-			// setFormIsValid(false);
 			return;
 		}
 
@@ -139,8 +138,8 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			address1_country: enteredCountry,
 		};
 
-		// Pass data up to the parent component, both myselft and all the dependent(s) data
-		onGetDependentFormValues(myselfData, dependentList);
+		// Pass data up to the parent component, both myselft and all the dependent(s) data, we also need first name and password to create a new credential
+		onGetDependentFormValues(myselfData, dependentList, enteredFirstName, enteredPassword);
 	};
 
 	return (
