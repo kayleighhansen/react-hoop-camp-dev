@@ -2,6 +2,60 @@ import React, { useState } from "react";
 import "./user_registration_organization_form.css";
 
 const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
+	/*************************************************************
+	 * For Myself
+	 *************************************************************/
+	// handle first name
+	const [enteredFirstName, setEnteredFirstName] = useState("");
+	const firstNameChangeHandler = (event) => {
+		setEnteredFirstName(event.target.value);
+	};
+
+	// handle email
+	const [enteredEmail, setEnteredEmail] = useState("");
+	const emailChangeHandler = (event) => {
+		setEnteredEmail(event.target.value);
+	};
+
+	// handle city
+	const [enteredCity, setEnteredCity] = useState("");
+	const cityChangeHandler = (event) => {
+		setEnteredCity(event.target.value);
+	};
+
+	// handle last name
+	const [enteredLastName, setEnteredLastName] = useState("");
+	const lastNameChangeHandler = (event) => {
+		setEnteredLastName(event.target.value);
+	};
+
+	// handle phone
+	const [enteredPhone, setEnteredPhone] = useState("");
+	const phoneChangeHandler = (event) => {
+		setEnteredPhone(event.target.value);
+	};
+
+	// handle state
+	const [enteredState, setEnteredState] = useState("");
+	const stateChangeHandler = (event) => {
+		setEnteredState(event.target.value);
+	};
+
+	// handle country
+	const [enteredCountry, setEnteredCountry] = useState("");
+	const countryChangeHandler = (event) => {
+		setEnteredCountry(event.target.value);
+	};
+
+	// handle password
+	const [enteredPassword, setEnteredPassword] = useState("");
+	const passwordChangeHandler = (event) => {
+		setEnteredPassword(event.target.value);
+	};
+
+	/*************************************************************
+	 * For Organization
+	 *************************************************************/
 	// handle organization name
 	const [enteredOrgaName, setEnteredOrgaName] = useState("");
 	const orgNameChangeHandler = (event) => {
@@ -58,98 +112,200 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 			address1_country: enteredOrgCountry,
 			crbb4_organizationtype: selectedOrgType,
 		};
-		
+
 		// pass the data up to parent component (index.js)
 		onGetOrganizationFormValues(organizationData);
 	};
 
 	return (
 		<div className="react-userRegisterForm-organization">
-			<h3>Organization</h3>
-			<form
-				className="react-userRegisterForm-organization-grid-container"
-				onSubmit={submitHandler}
-			>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Organization Name</label>
-					<br />
-					<input
-						type="text"
-						name="organization_name"
-						placeholder="Organization Name"
-						onChange={orgNameChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Email</label>
-					<br />
-					<input
-						type="email"
-						name="email"
-						placeholder="Email"
-						onChange={orgEmailChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Organization City</label>
-					<br />
-					<input
-						type="text"
-						name="organization_city"
-						placeholder="Organization City"
-						onChange={orgCityChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label htmlFor="orgType">Organization Type</label>
-					<br />
-					<select
-						name="organization_type"
-						id="orgType"
-						value={selectedOrgType}
-						onChange={orgTypeChangeHandler}
-					>
-						<option value="" disabled>Select One</option>
-						<option value="596800000">Elementary School</option>
-						<option value="596800001">Middle School</option>
-						<option value="596800002">High School</option>
-						<option value="596800003">Alternative School</option>
-						<option value="596800004">Non-Profit Organization</option>
-						<option value="596800005">Treatment Center</option>
-						<option value="596800006">Company</option>
-						<option value="596800007">Other</option>
-					</select>
+			<form onSubmit={submitHandler}>
+				<h3>Myself</h3>
+				<div className="react-userRegisterForm-organization-myself-grid-container">
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="fname">First Name</label>
+						<br />
+						<input
+							type="text"
+							name="first_name"
+							id="fname"
+							placeholder="First Name"
+							onChange={firstNameChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="lname">Last Name</label>
+						<br />
+						<input
+							type="text"
+							name="last_name"
+							id="lname"
+							placeholder="Last Name"
+							onChange={lastNameChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="email">Email</label>
+						<br />
+						<input
+							type="email"
+							name="email"
+							id="email"
+							placeholder="Email"
+							onChange={emailChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="city">City</label>
+						<br />
+						<input
+							type="text"
+							name="city"
+							id="city"
+							placeholder="City"
+							onChange={cityChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="state">State</label>
+						<br />
+						<input
+							type="text"
+							name="state"
+							id="state"
+							placeholder="State"
+							onChange={stateChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="country">Country</label>
+						<br />
+						<input
+							type="text"
+							name="country"
+							id="country"
+							placeholder="Country"
+							onChange={countryChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="phone">Phone</label>
+						<br />
+						<input
+							type="text"
+							name="phone"
+							id="phone"
+							placeholder="Phone"
+							onChange={phoneChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-myself-grid-format">
+						<label htmlFor="password">Password</label>
+						<br />
+						<input
+							type="text"
+							minLength="4"
+							name="password"
+							id="password"
+							placeholder="At least 4 characters long"
+							onChange={passwordChangeHandler}
+							required
+						/>
+					</div>
 				</div>
 
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Phone</label>
-					<br />
-					<input
-						type="text"
-						name="phone"
-						placeholder="Phone"
-						onChange={orgPhoneChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Organization State</label>
-					<br />
-					<input
-						type="text"
-						name="organization_state"
-						placeholder="Organization State"
-						onChange={orgStateChangeHandler}
-					/>
-				</div>
-				<div className="react-userRegisterForm-organization-grid-format">
-					<label>Organization Country</label>
-					<br />
-					<input
-						type="text"
-						name="organization_country"
-						placeholder="Organization Country"
-						onChange={orgCountryChangeHandler}
-					/>
+				<h3>Organization</h3>
+				<div className="react-userRegisterForm-organization-grid-container">
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Organization Name</label>
+						<br />
+						<input
+							type="text"
+							name="organization_name"
+							placeholder="Organization Name"
+							onChange={orgNameChangeHandler}
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Email</label>
+						<br />
+						<input
+							type="email"
+							name="email"
+							placeholder="Email"
+							onChange={orgEmailChangeHandler}
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Organization City</label>
+						<br />
+						<input
+							type="text"
+							name="organization_city"
+							placeholder="Organization City"
+							onChange={orgCityChangeHandler}
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label htmlFor="orgType">Organization Type</label>
+						<br />
+						<select
+							name="organization_type"
+							id="orgType"
+							value={selectedOrgType}
+							onChange={orgTypeChangeHandler}
+						>
+							<option value="" disabled>
+								Select One
+							</option>
+							<option value="596800000">Elementary School</option>
+							<option value="596800001">Middle School</option>
+							<option value="596800002">High School</option>
+							<option value="596800003">Alternative School</option>
+							<option value="596800004">Non-Profit Organization</option>
+							<option value="596800005">Treatment Center</option>
+							<option value="596800006">Company</option>
+							<option value="596800007">Other</option>
+						</select>
+					</div>
+
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Phone</label>
+						<br />
+						<input
+							type="text"
+							name="phone"
+							placeholder="Phone"
+							onChange={orgPhoneChangeHandler}
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Organization State</label>
+						<br />
+						<input
+							type="text"
+							name="organization_state"
+							placeholder="Organization State"
+							onChange={orgStateChangeHandler}
+						/>
+					</div>
+					<div className="react-userRegisterForm-organization-grid-format">
+						<label>Organization Country</label>
+						<br />
+						<input
+							type="text"
+							name="organization_country"
+							placeholder="Organization Country"
+							onChange={orgCountryChangeHandler}
+						/>
+					</div>
 				</div>
 				<button
 					className="react-userRegisterForm-organization-register-button"
