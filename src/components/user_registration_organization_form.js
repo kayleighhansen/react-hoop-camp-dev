@@ -70,7 +70,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 				className="react-userRegisterForm-organization-grid-container"
 				onSubmit={submitHandler}
 			>
-				<div className="react-userRegisterForm-organization-grid-item1 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Organization Name</label>
 					<br />
 					<input
@@ -80,7 +80,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						onChange={orgNameChangeHandler}
 					/>
 				</div>
-				<div className="react-userRegisterForm-organization-grid-item2 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Email</label>
 					<br />
 					<input
@@ -90,7 +90,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						onChange={orgEmailChangeHandler}
 					/>
 				</div>
-				<div className="react-userRegisterForm-organization-grid-item3 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Organization City</label>
 					<br />
 					<input
@@ -100,7 +100,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						onChange={orgCityChangeHandler}
 					/>
 				</div>
-				<div className="react-userRegisterForm-organization-grid-item4 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label htmlFor="orgType">Organization Type</label>
 					<br />
 					<select
@@ -121,7 +121,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 					</select>
 				</div>
 
-				<div className="react-userRegisterForm-organization-grid-item5 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Phone</label>
 					<br />
 					<input
@@ -131,7 +131,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						onChange={orgPhoneChangeHandler}
 					/>
 				</div>
-				<div className="react-userRegisterForm-organization-grid-item6 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Organization State</label>
 					<br />
 					<input
@@ -141,7 +141,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						onChange={orgStateChangeHandler}
 					/>
 				</div>
-				<div className="react-userRegisterForm-organization-grid-item7 react-userRegisterForm-organization-grid-format">
+				<div className="react-userRegisterForm-organization-grid-format">
 					<label>Organization Country</label>
 					<br />
 					<input
