@@ -127,7 +127,12 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		};
 
 		// pass the data up to parent component (index.js)
-		onGetOrganizationFormValues(myselfData, enteredPassword, organizationData);
+		onGetOrganizationFormValues(
+			myselfData,
+			organizationData,
+			enteredFirstName,
+			enteredPassword
+		);
 	};
 
 	return (

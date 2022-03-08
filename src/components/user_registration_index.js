@@ -31,6 +31,7 @@ const UserRegistrationIndex = () => {
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
+	// For this function, I used .then to chain the create credential function together
 	const createNewSingleUserContact = (
 		newContactInfoData,
 		newCredentialInfoData
@@ -92,15 +93,63 @@ const UserRegistrationIndex = () => {
 	// handle the form data from users
 	const getOrganizationFormValuesHandler = (
 		myselfData,
-		enteredPassword,
-		organizationData
+		organizationData,
+		enteredFirstName,
+		enteredPassword
 	) => {
-		console.log("myself");
-		console.log(myselfData);
-		console.log("entered password");
-		console.log(enteredPassword);
+		// We need to include the household relationship because we want to create a household automatically for every single user
+		const newMyselfData = {
+			...myselfData,
+			msnfp_householdrelationship: "844060000",
+		};
+
+		// This will be used to create a new credential, use first name as username
+		const newCredentialInfoData = {
+			username: enteredFirstName,
+			password: enteredPassword,
+		};
+
+		// Create a new single user and create a new credential for the user
+		createNewSingleUserContactAndCredential(
+			newMyselfData,
+			newCredentialInfoData
+		);
 
 		createNewOrganization(organizationData);
+	};
+
+	const createNewSingleUserContactAndCredential = (
+		newMyselfData,
+		newCredentialInfoData
+	) => {
+		// I learned that I MUST have the headers here otherwise I got a 415 error
+		fetch("https://localhost:44398/contacts/createContact", {
+			method: "POST",
+			body: JSON.stringify(newMyselfData),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		})
+			.then((response) => {
+				// error checking
+				if (!response.ok) {
+					throw new Error("Network response was not OK");
+				}
+				// return a promise for next then to handle
+				return response.json();
+			})
+			.then((data) => {
+				console.log("Created a new single user & household successfully.");
+				console.log(data);
+
+				// Add new contact id into the credential data 	because I will need to use this new contact id to create a new credential
+				newCredentialInfoData.contactID = data.contactid;
+				console.log(newCredentialInfoData);
+
+				// Create a new credential for the single user
+				createNewCrendential(newCredentialInfoData);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	const createNewOrganization = (organizationData) => {
