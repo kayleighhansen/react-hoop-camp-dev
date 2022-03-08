@@ -3,7 +3,7 @@ import "./user_registration_organization_form.css";
 
 const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 	/*************************************************************
-	 * For Myself
+	 * For Myself Fields
 	 *************************************************************/
 	// handle first name
 	const [enteredFirstName, setEnteredFirstName] = useState("");
@@ -54,7 +54,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 	};
 
 	/*************************************************************
-	 * For Organization
+	 * For Organization Fields
 	 *************************************************************/
 	// handle organization name
 	const [enteredOrgaName, setEnteredOrgaName] = useState("");
@@ -98,9 +98,22 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		setSelectedOrgType(event.target.value);
 	};
 
+	/*************************************************************
+	 * Handle Form Submission
+	 *************************************************************/
 	const submitHandler = (event) => {
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
+
+		const myselfData = {
+			firstname: enteredFirstName,
+			emailaddress1: enteredEmail,
+			address1_city: enteredCity,
+			lastname: enteredLastName,
+			address1_telephone1: enteredPhone,
+			address1_stateorprovince: enteredState,
+			address1_country: enteredCountry,
+		};
 
 		// for all the key names in the object, we must match what we have in the C# controller
 		const organizationData = {
@@ -114,7 +127,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		};
 
 		// pass the data up to parent component (index.js)
-		onGetOrganizationFormValues(organizationData);
+		onGetOrganizationFormValues(myselfData, enteredPassword, organizationData);
 	};
 
 	return (

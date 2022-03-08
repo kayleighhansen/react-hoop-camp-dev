@@ -90,7 +90,16 @@ const UserRegistrationIndex = () => {
 	 * This section is for Registering for An Organization
 	 *****************************************************************************/
 	// handle the form data from users
-	const getOrganizationFormValuesHandler = (organizationData) => {
+	const getOrganizationFormValuesHandler = (
+		myselfData,
+		enteredPassword,
+		organizationData
+	) => {
+		console.log("myself");
+		console.log(myselfData);
+		console.log("entered password");
+		console.log(enteredPassword);
+
 		createNewOrganization(organizationData);
 	};
 
