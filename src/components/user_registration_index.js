@@ -112,15 +112,15 @@ const UserRegistrationIndex = () => {
 		// Create a new single user and create a new credential for the user
 		createNewSingleUserContactAndCredential(
 			newMyselfData,
-			newCredentialInfoData
+			newCredentialInfoData,
+			organizationData
 		);
-
-		createNewOrganization(organizationData);
 	};
 
 	const createNewSingleUserContactAndCredential = (
 		newMyselfData,
-		newCredentialInfoData
+		newCredentialInfoData,
+		organizationData
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
@@ -146,18 +146,30 @@ const UserRegistrationIndex = () => {
 
 				// Create a new credential for the single user
 				createNewCrendential(newCredentialInfoData);
+
+				// We want to save the newly cretaed user to be the main contact for the organization
+				const newContactId = data.contactid;
+				console.log("newly created contact id here: ");
+				console.log(newContactId);
+				const newOrganizationData = {
+					...organizationData,
+					_primarycontactid_value: newContactId,
+				};
+
+				createNewOrganization(newOrganizationData);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
-	const createNewOrganization = (organizationData) => {
-		console.log(organizationData);
+	const createNewOrganization = (newOrganizationData) => {
+		console.log("new org data I will use to create a new org");
+		console.log(newOrganizationData);
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/accounts/createAccount", {
 			method: "POST",
-			body: JSON.stringify(organizationData),
+			body: JSON.stringify(newOrganizationData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
 		}).then((response) => {
 			console.log(response);
