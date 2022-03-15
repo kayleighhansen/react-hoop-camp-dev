@@ -153,7 +153,8 @@ const UserRegistrationIndex = () => {
 				console.log(newContactId);
 				const newOrganizationData = {
 					...organizationData,
-					_primarycontactid_value: newContactId,
+					// Must use primarycontactid to match the backend api
+					primarycontactid: newContactId,
 				};
 
 				createNewOrganization(newOrganizationData);
