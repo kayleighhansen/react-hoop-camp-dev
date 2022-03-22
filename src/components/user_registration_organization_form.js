@@ -147,7 +147,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="first_name"
 							id="fname"
-							placeholder="First Name"
 							onChange={firstNameChangeHandler}
 							required
 						/>
@@ -159,19 +158,17 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="last_name"
 							id="lname"
-							placeholder="Last Name"
 							onChange={lastNameChangeHandler}
 							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-myself-grid-format">
-						<label htmlFor="email">Email</label>
+						<label htmlFor="email">Email/User Name for Login</label>
 						<br />
 						<input
 							type="email"
 							name="email"
 							id="email"
-							placeholder="Email"
 							onChange={emailChangeHandler}
 							required
 						/>
@@ -183,7 +180,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="city"
 							id="city"
-							placeholder="City"
 							onChange={cityChangeHandler}
 							required
 						/>
@@ -195,7 +191,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="state"
 							id="state"
-							placeholder="State"
 							onChange={stateChangeHandler}
 							required
 						/>
@@ -207,7 +202,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="country"
 							id="country"
-							placeholder="Country"
 							onChange={countryChangeHandler}
 							required
 						/>
@@ -219,7 +213,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="phone"
 							id="phone"
-							placeholder="Phone"
 							onChange={phoneChangeHandler}
 							required
 						/>
@@ -247,7 +240,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="text"
 							name="organization_name"
-							placeholder="Organization Name"
 							onChange={orgNameChangeHandler}
 						/>
 					</div>
@@ -257,7 +249,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="email"
 							name="email"
-							placeholder="Email"
 							onChange={orgEmailChangeHandler}
 						/>
 					</div>
@@ -267,7 +258,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="text"
 							name="organization_city"
-							placeholder="Organization City"
 							onChange={orgCityChangeHandler}
 						/>
 					</div>
@@ -300,7 +290,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="text"
 							name="phone"
-							placeholder="Phone"
 							onChange={orgPhoneChangeHandler}
 						/>
 					</div>
@@ -310,7 +299,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="text"
 							name="organization_state"
-							placeholder="Organization State"
 							onChange={orgStateChangeHandler}
 						/>
 					</div>
@@ -320,7 +308,6 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<input
 							type="text"
 							name="organization_country"
-							placeholder="Organization Country"
 							onChange={orgCountryChangeHandler}
 						/>
 					</div>
