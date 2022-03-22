@@ -154,7 +154,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="first_name"
 							id="fname"
-							placeholder="First Name"
 							onChange={firstNameChangeHandler}
 							required
 						/>
@@ -166,19 +165,17 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="last_name"
 							id="lname"
-							placeholder="Last Name"
 							onChange={lastNameChangeHandler}
 							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="email">Email</label>
+						<label htmlFor="email">Email/User Name for Login</label>
 						<br />
 						<input
 							type="email"
 							name="email"
 							id="email"
-							placeholder="Email"
 							onChange={emailChangeHandler}
 							required
 						/>
@@ -190,7 +187,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="city"
 							id="city"
-							placeholder="City"
 							onChange={cityChangeHandler}
 							required
 						/>
@@ -202,7 +198,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="state"
 							id="state"
-							placeholder="State"
 							onChange={stateChangeHandler}
 							required
 						/>
@@ -214,7 +209,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="country"
 							id="country"
-							placeholder="Country"
 							onChange={countryChangeHandler}
 							required
 						/>
@@ -226,7 +220,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 							type="text"
 							name="phone"
 							id="phone"
-							placeholder="Phone"
 							onChange={phoneChangeHandler}
 							required
 						/>
@@ -257,7 +250,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 										id="dependent_fname"
 										type="text"
 										name="dependent_first_name"
-										placeholder="Dependent First Name"
 										onChange={(event) =>
 											depFirstNameChangeHandler(event, dependent.id)
 										}
@@ -271,7 +263,6 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 										id="dependent_lname"
 										type="text"
 										name="dependent_last_name"
-										placeholder="Dependent Last Name"
 										onChange={(event) =>
 											depLastNameChangeHandler(event, dependent.id)
 										}
