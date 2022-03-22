@@ -108,7 +108,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="first_name"
 						id="fname"
-						placeholder="First Name"
 						onChange={firstNameChangeHandler}
 						required
 					/>
@@ -120,19 +119,17 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="last_name"
 						id="lname"
-						placeholder="Last Name"
 						onChange={lastNameChangeHandler}
 						required
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">Email/User Name for Login</label>
 					<br />
 					<input
 						type="email"
 						name="email"
 						id="email"
-						placeholder="Email"
 						onChange={emailChangeHandler}
 						required
 					/>
@@ -144,7 +141,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="city"
 						id="city"
-						placeholder="City"
 						onChange={cityChangeHandler}
 						required
 					/>
@@ -156,7 +152,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="state"
 						id="state"
-						placeholder="State"
 						onChange={stateChangeHandler}
 						required
 					/>
@@ -165,7 +160,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					<input
 						type="text"
 						name="birthday"
-						placeholder="Birthday"
 						onChange={birthdayChangeHandler}
 						required
 					/>
@@ -177,7 +171,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="country"
 						id="country"
-						placeholder="Country"
 						onChange={countryChangeHandler}
 						required
 					/>
@@ -189,7 +182,6 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						type="text"
 						name="phone"
 						id="phone"
-						placeholder="Phone"
 						onChange={phoneChangeHandler}
 						required
 					/>
