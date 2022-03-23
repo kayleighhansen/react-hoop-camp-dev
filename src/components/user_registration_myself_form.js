@@ -56,10 +56,21 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		setEnteredPassword(event.target.value);
 	};
 
-	// this is used for form error validation, set it to true because we don't want to show any erros at beginning
+	// handle confirm password
+	const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+	const confirmPasswordChangeHandler = (event) => {
+		setEnteredConfirmPassword(event.target.value);
+	};
+
+	// For form error validation, set it to true because we don't want to show any erros at beginning
 	const [formIsValid, setFormIsValid] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const submitHandler = (event) => {
+		// Clean out old error messages first
+		setFormIsValid(true);
+		setErrorMessage("");
+
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
 
@@ -72,9 +83,17 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 			enteredPhone === "" ||
 			enteredState === "" ||
 			enteredCountry === "" ||
-			enteredPassword === ""
+			enteredPassword === "" ||
+			enteredConfirmPassword === ""
 		) {
 			setFormIsValid(false);
+			setErrorMessage("No empty field is allowed.");
+			return;
+		}
+
+		if (enteredConfirmPassword !== enteredPassword) {
+			setFormIsValid(false);
+			setErrorMessage("Confirm Password doesn't match the Password.");
 			return;
 		}
 
@@ -190,7 +209,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					<label htmlFor="password">Password</label>
 					<br />
 					<input
-						type="text"
+						type="password"
 						minLength="4"
 						name="password"
 						id="password"
@@ -199,9 +218,22 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 						required
 					/>
 				</div>
+				<div className="react-userRegisterForm-myself-grid-format">
+					<label htmlFor="confirm_password">Confirm Password</label>
+					<br />
+					<input
+						type="password"
+						minLength="4"
+						name="confirm_password"
+						id="confirm_password"
+						placeholder="Must match the password"
+						onChange={confirmPasswordChangeHandler}
+						required
+					/>
+				</div>
 				{!formIsValid && (
 					<div className="react-userRegisterForm-myself-error-message">
-						<h3>Please fill out all the fields.</h3>
+						<h3>{errorMessage}</h3>
 					</div>
 				)}
 				<button
