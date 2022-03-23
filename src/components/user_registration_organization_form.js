@@ -174,7 +174,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		onGetOrganizationFormValues(
 			myselfData,
 			organizationData,
-			enteredFirstName,
+			enteredEmail,
 			enteredPassword
 		);
 	};

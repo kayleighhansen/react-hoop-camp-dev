@@ -11,7 +11,7 @@ const UserRegistrationIndex = () => {
 	 *****************************************************************************/
 	const getSelfFormValuesHandler = (
 		contactInfoData,
-		enteredFirstName,
+		enteredEmail,
 		enteredPassword
 	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
@@ -20,9 +20,9 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// This will be used to create a new credential, use first name as username
+		// This will be used to create a new credential, use email as login username
 		const newCredentialInfoData = {
-			username: enteredFirstName,
+			username: enteredEmail,
 			password: enteredPassword,
 		};
 
@@ -94,7 +94,7 @@ const UserRegistrationIndex = () => {
 	const getOrganizationFormValuesHandler = (
 		myselfData,
 		organizationData,
-		enteredFirstName,
+		enteredEmail,
 		enteredPassword
 	) => {
 		// We need to include the household relationship because we want to create a household automatically for every single user
@@ -103,9 +103,9 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// This will be used to create a new credential, use first name as username
+		// This will be used to create a new credential, use email as login username
 		const newCredentialInfoData = {
-			username: enteredFirstName,
+			username: enteredEmail,
 			password: enteredPassword,
 		};
 
@@ -183,7 +183,7 @@ const UserRegistrationIndex = () => {
 	const getDependentFormValuesHandler = (
 		myselfData,
 		dependentData,
-		enteredFirstName,
+		enteredEmail,
 		enteredPassword
 	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
@@ -192,9 +192,9 @@ const UserRegistrationIndex = () => {
 			msnfp_householdrelationship: "844060000",
 		};
 
-		// This will be used to create a new credential, use first name as username
+		// This will be used to create a new credential, use email as login username
 		const newCredentialInfoData = {
-			username: enteredFirstName,
+			username: enteredEmail,
 			password: enteredPassword,
 		};
 
@@ -386,7 +386,3 @@ const UserRegistrationIndex = () => {
 };
 
 export default UserRegistrationIndex;
-
-// I will need these two lines below for it to run in Wordpress
-// let domContainer = document.querySelector("#user_registration_container");
-// ReactDOM.render(<UserRegistrationIndex />, domContainer);

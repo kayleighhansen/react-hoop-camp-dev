@@ -178,7 +178,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		onGetDependentFormValues(
 			myselfData,
 			dependentList,
-			enteredFirstName,
+			enteredEmail,
 			enteredPassword
 		);
 	};
