@@ -143,7 +143,7 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 					/>
 				</div>
 				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="email">Email/User Name for Login</label>
+					<label htmlFor="email">Email</label>
 					<br />
 					<input
 						type="email"

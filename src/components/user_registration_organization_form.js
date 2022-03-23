@@ -207,7 +207,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-myself-grid-format">
-						<label htmlFor="email">Email/User Name for Login</label>
+						<label htmlFor="email">Email</label>
 						<br />
 						<input
 							type="email"
