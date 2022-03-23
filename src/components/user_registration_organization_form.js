@@ -53,6 +53,12 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		setEnteredPassword(event.target.value);
 	};
 
+	// handle confirm password
+	const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+	const confirmPasswordChangeHandler = (event) => {
+		setEnteredConfirmPassword(event.target.value);
+	};
+
 	/*************************************************************
 	 * For Organization Fields
 	 *************************************************************/
@@ -98,12 +104,50 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 		setSelectedOrgType(event.target.value);
 	};
 
+	// For form error validation, set it to true because we don't want to show any erros at beginning
+	const [formIsValid, setFormIsValid] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
+
 	/*************************************************************
 	 * Handle Form Submission
 	 *************************************************************/
 	const submitHandler = (event) => {
+		// Clean out old error messages first
+		setFormIsValid(true);
+		setErrorMessage("");
+
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
+
+		// if any field is empty, set the formIsValid to false and display the error message
+		if (
+			enteredFirstName === "" ||
+			enteredEmail === "" ||
+			enteredCity === "" ||
+			enteredLastName === "" ||
+			enteredPhone === "" ||
+			enteredState === "" ||
+			enteredCountry === "" ||
+			enteredPassword === "" ||
+			enteredConfirmPassword === "" ||
+			enteredOrgaName === "" ||
+			enteredOrgEmail === "" ||
+			enteredOrgCity === "" ||
+			selectedOrgType === "" ||
+			enteredOrgPhone === "" || 
+			enteredOrgState === "" ||
+			enteredOrgCountry === ""
+		) {
+			setFormIsValid(false);
+			setErrorMessage("No empty field is allowed.");
+			return;
+		}
+
+		if (enteredConfirmPassword !== enteredPassword) {
+			setFormIsValid(false);
+			setErrorMessage("Confirm Password doesn't match the Password.");
+			return;
+		}
 
 		const myselfData = {
 			firstname: enteredFirstName,
@@ -221,12 +265,25 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 						<label htmlFor="password">Password</label>
 						<br />
 						<input
-							type="text"
+							type="password"
 							minLength="4"
 							name="password"
 							id="password"
 							placeholder="At least 4 characters long"
 							onChange={passwordChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-myself-grid-format">
+						<label htmlFor="confirm_password">Confirm Password</label>
+						<br />
+						<input
+							type="password"
+							minLength="4"
+							name="confirm_password"
+							id="confirm_password"
+							placeholder="Must match the password"
+							onChange={confirmPasswordChangeHandler}
 							required
 						/>
 					</div>
@@ -241,6 +298,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="organization_name"
 							onChange={orgNameChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-grid-format">
@@ -250,6 +308,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="email"
 							name="email"
 							onChange={orgEmailChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-grid-format">
@@ -259,6 +318,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="organization_city"
 							onChange={orgCityChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-grid-format">
@@ -269,6 +329,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							id="orgType"
 							value={selectedOrgType}
 							onChange={orgTypeChangeHandler}
+							required
 						>
 							<option value="" disabled>
 								Select One
@@ -291,6 +352,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="phone"
 							onChange={orgPhoneChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-grid-format">
@@ -300,6 +362,7 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="organization_state"
 							onChange={orgStateChangeHandler}
+							required
 						/>
 					</div>
 					<div className="react-userRegisterForm-organization-grid-format">
@@ -309,9 +372,15 @@ const UserRegistrationOrganizationForm = ({ onGetOrganizationFormValues }) => {
 							type="text"
 							name="organization_country"
 							onChange={orgCountryChangeHandler}
+							required
 						/>
 					</div>
 				</div>
+				{!formIsValid && (
+					<div className="react-userRegisterForm-myself-error-message">
+						<h3>{errorMessage}</h3>
+					</div>
+				)}
 				<button
 					className="react-userRegisterForm-organization-register-button"
 					type="submit"
