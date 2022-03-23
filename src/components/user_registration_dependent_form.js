@@ -50,6 +50,16 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		setEnteredPassword(event.target.value);
 	};
 
+	// handle confirm password
+	const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+	const confirmPasswordChangeHandler = (event) => {
+		setEnteredConfirmPassword(event.target.value);
+	};
+
+	// For form error validation, set it to true because we don't want to show any erros at beginning
+	const [formIsValid, setFormIsValid] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
+
 	// handle the change of dependent first name
 	const depFirstNameChangeHandler = (event, id) => {
 		const newList = [...dependentList];
@@ -110,10 +120,14 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 
 	// Handle user input when they click on "Register"
 	const submitHandler = (event) => {
+		// Clean out old error messages first
+		setFormIsValid(true);
+		setErrorMessage("");
+
 		// Prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
 
-		// If any field is empty, set the formIsValid to false and display the error message
+		// If any myself form field is empty, set the formIsValid to false and display the error message
 		if (
 			enteredFirstName === "" ||
 			enteredEmail === "" ||
@@ -122,8 +136,30 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			enteredPhone === "" ||
 			enteredState === "" ||
 			enteredCountry === "" ||
-			enteredPassword === ""
+			enteredPassword === "" ||
+			enteredConfirmPassword === ""
 		) {
+			setFormIsValid(false);
+			setErrorMessage("No empty field is allowed.");
+			return;
+		}
+
+		// Make sure all dependent fields are not empty
+		let emptyDependent = 0;
+		dependentList.forEach((dependent) => {
+			if (dependent.firstname === "" || dependent.lastname === "") {
+				emptyDependent++;
+			}
+		});
+		if (emptyDependent > 0) {
+			setFormIsValid(false);
+			setErrorMessage("No empty field is allowed.");
+			return;
+		}
+
+		if (enteredConfirmPassword !== enteredPassword) {
+			setFormIsValid(false);
+			setErrorMessage("Confirm Password doesn't match the Password.");
 			return;
 		}
 
@@ -139,7 +175,12 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		};
 
 		// Pass data up to the parent component, both myselft and all the dependent(s) data, we also need first name and password to create a new credential
-		onGetDependentFormValues(myselfData, dependentList, enteredFirstName, enteredPassword);
+		onGetDependentFormValues(
+			myselfData,
+			dependentList,
+			enteredFirstName,
+			enteredPassword
+		);
 	};
 
 	return (
@@ -228,12 +269,25 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 						<label htmlFor="password">Password</label>
 						<br />
 						<input
-							type="text"
+							type="password"
 							minLength="4"
 							name="password"
 							id="password"
 							placeholder="At least 4 characters long"
 							onChange={passwordChangeHandler}
+							required
+						/>
+					</div>
+					<div className="react-userRegisterForm-myself-grid-format">
+						<label htmlFor="confirm_password">Confirm Password</label>
+						<br />
+						<input
+							type="password"
+							minLength="4"
+							name="confirm_password"
+							id="confirm_password"
+							placeholder="Must match the password"
+							onChange={confirmPasswordChangeHandler}
 							required
 						/>
 					</div>
@@ -292,6 +346,11 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 						Add More Dependent
 					</button>
 				</div>
+				{!formIsValid && (
+					<div className="react-userRegisterForm-myself-error-message">
+						<h3>{errorMessage}</h3>
+					</div>
+				)}
 				<button
 					className="react-userRegisterForm-dependent-register-button"
 					type="submit"
