@@ -95,12 +95,14 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		) {
 			setFormIsValid(false);
 			setErrorMessage("No empty field is allowed.");
+			setCreatingUser(false);
 			return;
 		}
 
 		if (enteredConfirmPassword !== enteredPassword) {
 			setFormIsValid(false);
 			setErrorMessage("Confirm Password doesn't match the Password.");
+			setCreatingUser(false);
 			return;
 		}
 
@@ -117,142 +119,154 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		};
 
 		// pass the data up to parent component (index.js)
-		onGetSelfFormValues(contactInfoData, enteredEmail, enteredPassword, setCreatingUser);
+		onGetSelfFormValues(
+			contactInfoData,
+			enteredEmail,
+			enteredPassword,
+			setCreatingUser
+		);
 	};
 
 	return (
 		<div className="react-userRegisterForm-myself">
-			{creatingUser && <div>
-				<ClipLoader color="rgb(255,177,3)" size={100} />
-			</div>}
-			<h3>Myself</h3>
-			<form
-				className="react-userRegisterForm-myself-grid-container"
-				onSubmit={submitHandler}
-			>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="fname">First Name</label>
-					<br />
-					<input
-						type="text"
-						name="first_name"
-						id="fname"
-						onChange={firstNameChangeHandler}
-						required
-					/>
+			{creatingUser && (
+				<div>
+					<h2>Creating a user...</h2>
+					<ClipLoader color="rgb(255,177,3)" size={100} />
 				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="lname">Last Name</label>
-					<br />
-					<input
-						type="text"
-						name="last_name"
-						id="lname"
-						onChange={lastNameChangeHandler}
-						required
-					/>
+			)}
+			{!creatingUser && (
+				<div>
+					<h3>Myself</h3>
+					<form
+						className="react-userRegisterForm-myself-grid-container"
+						onSubmit={submitHandler}
+					>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="fname">First Name</label>
+							<br />
+							<input
+								type="text"
+								name="first_name"
+								id="fname"
+								onChange={firstNameChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="lname">Last Name</label>
+							<br />
+							<input
+								type="text"
+								name="last_name"
+								id="lname"
+								onChange={lastNameChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="email">Email</label>
+							<br />
+							<input
+								type="email"
+								name="email"
+								id="email"
+								onChange={emailChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="city">City</label>
+							<br />
+							<input
+								type="text"
+								name="city"
+								id="city"
+								onChange={cityChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="state">State</label>
+							<br />
+							<input
+								type="text"
+								name="state"
+								id="state"
+								onChange={stateChangeHandler}
+								required
+							/>
+						</div>
+						{/* <div className="">
+							<input
+								type="text"
+								name="birthday"
+								onChange={birthdayChangeHandler}
+								required
+							/>
+						</div> */}
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="country">Country</label>
+							<br />
+							<input
+								type="text"
+								name="country"
+								id="country"
+								onChange={countryChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="phone">Phone</label>
+							<br />
+							<input
+								type="text"
+								name="phone"
+								id="phone"
+								onChange={phoneChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="password">Password</label>
+							<br />
+							<input
+								type="password"
+								minLength="4"
+								name="password"
+								id="password"
+								placeholder="At least 4 characters long"
+								onChange={passwordChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="confirm_password">Confirm Password</label>
+							<br />
+							<input
+								type="password"
+								minLength="4"
+								name="confirm_password"
+								id="confirm_password"
+								placeholder="Must match the password"
+								onChange={confirmPasswordChangeHandler}
+								required
+							/>
+						</div>
+						{!formIsValid && (
+							<div className="react-userRegisterForm-myself-error-message">
+								<h3>{errorMessage}</h3>
+							</div>
+						)}
+						<button
+							className="react-userRegisterForm-myself-register-button"
+							type="submit"
+						>
+							Register My Account
+						</button>
+					</form>
 				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="email">Email</label>
-					<br />
-					<input
-						type="email"
-						name="email"
-						id="email"
-						onChange={emailChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="city">City</label>
-					<br />
-					<input
-						type="text"
-						name="city"
-						id="city"
-						onChange={cityChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="state">State</label>
-					<br />
-					<input
-						type="text"
-						name="state"
-						id="state"
-						onChange={stateChangeHandler}
-						required
-					/>
-				</div>
-				{/* <div className="">
-					<input
-						type="text"
-						name="birthday"
-						onChange={birthdayChangeHandler}
-						required
-					/>
-				</div> */}
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="country">Country</label>
-					<br />
-					<input
-						type="text"
-						name="country"
-						id="country"
-						onChange={countryChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="phone">Phone</label>
-					<br />
-					<input
-						type="text"
-						name="phone"
-						id="phone"
-						onChange={phoneChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="password">Password</label>
-					<br />
-					<input
-						type="password"
-						minLength="4"
-						name="password"
-						id="password"
-						placeholder="At least 4 characters long"
-						onChange={passwordChangeHandler}
-						required
-					/>
-				</div>
-				<div className="react-userRegisterForm-myself-grid-format">
-					<label htmlFor="confirm_password">Confirm Password</label>
-					<br />
-					<input
-						type="password"
-						minLength="4"
-						name="confirm_password"
-						id="confirm_password"
-						placeholder="Must match the password"
-						onChange={confirmPasswordChangeHandler}
-						required
-					/>
-				</div>
-				{!formIsValid && (
-					<div className="react-userRegisterForm-myself-error-message">
-						<h3>{errorMessage}</h3>
-					</div>
-				)}
-				<button
-					className="react-userRegisterForm-myself-register-button"
-					type="submit"
-				>
-					Register My Account
-				</button>
-			</form>
+			)}
 		</div>
 	);
 };
