@@ -198,7 +198,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		<div className="react-userRegisterForm-dependent">
 			{creatingUser && (
 				<div>
-					<h1>Creating a user...</h1>
+					<h1>Creating a user and dependent(s)...</h1>
 					<ClipLoader color="rgb(255,177,3)" size={100} />
 				</div>
 			)}
