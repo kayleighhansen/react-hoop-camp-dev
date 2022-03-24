@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import "./user_registration_dependent_form.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 	// handle first name
@@ -59,6 +60,9 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 	// For form error validation, set it to true because we don't want to show any erros at beginning
 	const [formIsValid, setFormIsValid] = useState(true);
 	const [errorMessage, setErrorMessage] = useState("");
+
+	// For loading spinner
+	const [creatingUser, setCreatingUser] = useState(false);
 
 	// handle the change of dependent first name
 	const depFirstNameChangeHandler = (event, id) => {
@@ -124,6 +128,9 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		setFormIsValid(true);
 		setErrorMessage("");
 
+		// Make the spinner show up
+		setCreatingUser(true);
+
 		// Prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
 
@@ -141,6 +148,7 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		) {
 			setFormIsValid(false);
 			setErrorMessage("No empty field is allowed.");
+			setCreatingUser(false);
 			return;
 		}
 
@@ -154,12 +162,14 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 		if (emptyDependent > 0) {
 			setFormIsValid(false);
 			setErrorMessage("No empty field is allowed.");
+			setCreatingUser(false);
 			return;
 		}
 
 		if (enteredConfirmPassword !== enteredPassword) {
 			setFormIsValid(false);
 			setErrorMessage("Confirm Password doesn't match the Password.");
+			setCreatingUser(false);
 			return;
 		}
 
@@ -179,185 +189,196 @@ const UserRegistrationDependentForm = ({ onGetDependentFormValues }) => {
 			myselfData,
 			dependentList,
 			enteredEmail,
-			enteredPassword
+			enteredPassword,
+			setCreatingUser
 		);
 	};
 
 	return (
 		<div className="react-userRegisterForm-dependent">
-			<form onSubmit={submitHandler}>
-				<h3>Myself</h3>
-				<div className="react-userRegisterForm-dependent-myself-grid-container">
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="fname">First Name</label>
-						<br />
-						<input
-							type="text"
-							name="first_name"
-							id="fname"
-							onChange={firstNameChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="lname">Last Name</label>
-						<br />
-						<input
-							type="text"
-							name="last_name"
-							id="lname"
-							onChange={lastNameChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="email">Email</label>
-						<br />
-						<input
-							type="email"
-							name="email"
-							id="email"
-							onChange={emailChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="city">City</label>
-						<br />
-						<input
-							type="text"
-							name="city"
-							id="city"
-							onChange={cityChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="state">State</label>
-						<br />
-						<input
-							type="text"
-							name="state"
-							id="state"
-							onChange={stateChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="country">Country</label>
-						<br />
-						<input
-							type="text"
-							name="country"
-							id="country"
-							onChange={countryChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-dependent-myself-grid-format">
-						<label htmlFor="phone">Phone</label>
-						<br />
-						<input
-							type="text"
-							name="phone"
-							id="phone"
-							onChange={phoneChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-myself-grid-format">
-						<label htmlFor="password">Password</label>
-						<br />
-						<input
-							type="password"
-							minLength="4"
-							name="password"
-							id="password"
-							placeholder="At least 4 characters long"
-							onChange={passwordChangeHandler}
-							required
-						/>
-					</div>
-					<div className="react-userRegisterForm-myself-grid-format">
-						<label htmlFor="confirm_password">Confirm Password</label>
-						<br />
-						<input
-							type="password"
-							minLength="4"
-							name="confirm_password"
-							id="confirm_password"
-							placeholder="Must match the password"
-							onChange={confirmPasswordChangeHandler}
-							required
-						/>
-					</div>
+			{creatingUser && (
+				<div>
+					<h1>Creating a user...</h1>
+					<ClipLoader color="rgb(255,177,3)" size={100} />
 				</div>
-				<h3>Dependent(s)</h3>
-				<div className="react-userRegisterForm-dependent-grid-container">
-					{dependentList.map((dependent) => {
-						return (
-							<Fragment key={dependent.id}>
-								<div className="react-userRegisterForm-dependent-grid-format">
-									<label htmlFor="dependent_fname">Dependent First Name</label>
-									<br />
-									<input
-										id="dependent_fname"
-										type="text"
-										name="dependent_first_name"
-										onChange={(event) =>
-											depFirstNameChangeHandler(event, dependent.id)
-										}
-										required
-									/>
-								</div>
-								<div className="react-userRegisterForm-dependent-grid-format">
-									<label htmlFor="dependent_lname">Dependent Last Name</label>
-									<br />
-									<input
-										id="dependent_lname"
-										type="text"
-										name="dependent_last_name"
-										onChange={(event) =>
-											depLastNameChangeHandler(event, dependent.id)
-										}
-										required
-									/>
-								</div>
-								{dependentList.length > 1 && (
-									<div className="react-userRegisterForm-dependent-remove-button">
-										<button
-											type="button"
-											onClick={() => removeDependentHandler(dependent.id)}
-										>
-											Remove
-										</button>
+			)}
+			{!creatingUser && (
+				<form onSubmit={submitHandler}>
+					<h3>Myself</h3>
+					<div className="react-userRegisterForm-dependent-myself-grid-container">
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="fname">First Name</label>
+							<br />
+							<input
+								type="text"
+								name="first_name"
+								id="fname"
+								onChange={firstNameChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="lname">Last Name</label>
+							<br />
+							<input
+								type="text"
+								name="last_name"
+								id="lname"
+								onChange={lastNameChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="email">Email</label>
+							<br />
+							<input
+								type="email"
+								name="email"
+								id="email"
+								onChange={emailChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="city">City</label>
+							<br />
+							<input
+								type="text"
+								name="city"
+								id="city"
+								onChange={cityChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="state">State</label>
+							<br />
+							<input
+								type="text"
+								name="state"
+								id="state"
+								onChange={stateChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="country">Country</label>
+							<br />
+							<input
+								type="text"
+								name="country"
+								id="country"
+								onChange={countryChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-dependent-myself-grid-format">
+							<label htmlFor="phone">Phone</label>
+							<br />
+							<input
+								type="text"
+								name="phone"
+								id="phone"
+								onChange={phoneChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="password">Password</label>
+							<br />
+							<input
+								type="password"
+								minLength="4"
+								name="password"
+								id="password"
+								placeholder="At least 4 characters long"
+								onChange={passwordChangeHandler}
+								required
+							/>
+						</div>
+						<div className="react-userRegisterForm-myself-grid-format">
+							<label htmlFor="confirm_password">Confirm Password</label>
+							<br />
+							<input
+								type="password"
+								minLength="4"
+								name="confirm_password"
+								id="confirm_password"
+								placeholder="Must match the password"
+								onChange={confirmPasswordChangeHandler}
+								required
+							/>
+						</div>
+					</div>
+					<h3>Dependent(s)</h3>
+					<div className="react-userRegisterForm-dependent-grid-container">
+						{dependentList.map((dependent) => {
+							return (
+								<Fragment key={dependent.id}>
+									<div className="react-userRegisterForm-dependent-grid-format">
+										<label htmlFor="dependent_fname">
+											Dependent First Name
+										</label>
+										<br />
+										<input
+											id="dependent_fname"
+											type="text"
+											name="dependent_first_name"
+											onChange={(event) =>
+												depFirstNameChangeHandler(event, dependent.id)
+											}
+											required
+										/>
 									</div>
-								)}
-							</Fragment>
-						);
-					})}
-				</div>
-				<div className="react-userRegisterForm-dependent-grid-format">
-					<button
-						type="button"
-						className="react-userRegisterForm-dependent-add-button"
-						onClick={addNewDependentHandler}
-					>
-						Add More Dependent
-					</button>
-				</div>
-				{!formIsValid && (
-					<div className="react-userRegisterForm-myself-error-message">
-						<h3>{errorMessage}</h3>
+									<div className="react-userRegisterForm-dependent-grid-format">
+										<label htmlFor="dependent_lname">Dependent Last Name</label>
+										<br />
+										<input
+											id="dependent_lname"
+											type="text"
+											name="dependent_last_name"
+											onChange={(event) =>
+												depLastNameChangeHandler(event, dependent.id)
+											}
+											required
+										/>
+									</div>
+									{dependentList.length > 1 && (
+										<div className="react-userRegisterForm-dependent-remove-button">
+											<button
+												type="button"
+												onClick={() => removeDependentHandler(dependent.id)}
+											>
+												Remove
+											</button>
+										</div>
+									)}
+								</Fragment>
+							);
+						})}
 					</div>
-				)}
-				<button
-					className="react-userRegisterForm-dependent-register-button"
-					type="submit"
-				>
-					Register for All
-				</button>
-			</form>
+					<div className="react-userRegisterForm-dependent-grid-format">
+						<button
+							type="button"
+							className="react-userRegisterForm-dependent-add-button"
+							onClick={addNewDependentHandler}
+						>
+							Add More Dependent
+						</button>
+					</div>
+					{!formIsValid && (
+						<div className="react-userRegisterForm-myself-error-message">
+							<h3>{errorMessage}</h3>
+						</div>
+					)}
+					<button
+						className="react-userRegisterForm-dependent-register-button"
+						type="submit"
+					>
+						Register for All
+					</button>
+				</form>
+			)}
 		</div>
 	);
 };

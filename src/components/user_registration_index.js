@@ -189,7 +189,8 @@ const UserRegistrationIndex = () => {
 		myselfData,
 		dependentData,
 		enteredEmail,
-		enteredPassword
+		enteredPassword,
+		setCreatingUser
 	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newMyselfData = {
@@ -215,7 +216,8 @@ const UserRegistrationIndex = () => {
 		createNewSingleUserContactAndDependent(
 			newMyselfData,
 			newCredentialInfoData,
-			newDependentData
+			newDependentData,
+			setCreatingUser
 		);
 	};
 
@@ -223,7 +225,8 @@ const UserRegistrationIndex = () => {
 	const createNewSingleUserContactAndDependent = (
 		newMyselfData,
 		newCredentialInfoData,
-		newDependentData
+		newDependentData,
+		setCreatingUser
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
@@ -254,7 +257,7 @@ const UserRegistrationIndex = () => {
 				const newHouseHoldId = data._msnfp_householdid_value;
 				console.log(newHouseHoldId);
 				// Create new dependent(s)
-				createNewDependent(newHouseHoldId, newDependentData);
+				createNewDependent(newHouseHoldId, newDependentData, setCreatingUser);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -286,7 +289,7 @@ const UserRegistrationIndex = () => {
 			});
 	};
 
-	const createNewDependent = (newHouseHoldId, newDependentData) => {
+	const createNewDependent = (newHouseHoldId, newDependentData, setCreatingUser) => {
 		// must add the newHouseHoldId to all dependent(s), so it knows which household this dependent will be added in
 		newDependentData.forEach((dependent) => {
 			dependent.msnfp_HouseholdId = newHouseHoldId;
@@ -314,12 +317,17 @@ const UserRegistrationIndex = () => {
 				.then((data) => {
 					console.log("Created a new dependent successfully.");
 					console.log(data);
+					setCreatingUser(false);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 		});
 	};
+
+	/******************************************************************************
+	 * This section is to display 3 different types of forms
+	 *****************************************************************************/
 
 	// set up this to catch what the user select on the radio button
 	const [selectedForm, setSelectedForm] = useState("");
