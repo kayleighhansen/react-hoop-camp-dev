@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./user_registration_myself_form.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 	// handle first name
@@ -66,10 +67,16 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 	const [formIsValid, setFormIsValid] = useState(true);
 	const [errorMessage, setErrorMessage] = useState("");
 
+	// For loading spinner
+	const [creatingUser, setCreatingUser] = useState(false);
+
 	const submitHandler = (event) => {
 		// Clean out old error messages first
 		setFormIsValid(true);
 		setErrorMessage("");
+
+		// Make the spinner show up
+		setCreatingUser(true);
 
 		// prevent the form from being sending to the server, so the page will NOT be reloaded
 		event.preventDefault();
@@ -110,11 +117,14 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		};
 
 		// pass the data up to parent component (index.js)
-		onGetSelfFormValues(contactInfoData, enteredEmail, enteredPassword);
+		onGetSelfFormValues(contactInfoData, enteredEmail, enteredPassword, setCreatingUser);
 	};
 
 	return (
 		<div className="react-userRegisterForm-myself">
+			{creatingUser && <div>
+				<ClipLoader color="rgb(255,177,3)" size={100} />
+			</div>}
 			<h3>Myself</h3>
 			<form
 				className="react-userRegisterForm-myself-grid-container"

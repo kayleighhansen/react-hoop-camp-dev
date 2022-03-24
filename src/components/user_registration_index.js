@@ -12,7 +12,8 @@ const UserRegistrationIndex = () => {
 	const getSelfFormValuesHandler = (
 		contactInfoData,
 		enteredEmail,
-		enteredPassword
+		enteredPassword,
+		setCreatingUser
 	) => {
 		// we need to include the household relationship because we want to create a household automatically for every single user
 		const newContactInfoData = {
@@ -27,14 +28,15 @@ const UserRegistrationIndex = () => {
 		};
 
 		// Call this function to have it call our C# API
-		createNewSingleUserContact(newContactInfoData, newCredentialInfoData);
+		createNewSingleUserContact(newContactInfoData, newCredentialInfoData, setCreatingUser);
 	};
 
 	// this function calls our C# API and the C# API will call dynamics to save the data into database
 	// For this function, I used .then to chain the create credential function together
 	const createNewSingleUserContact = (
 		newContactInfoData,
-		newCredentialInfoData
+		newCredentialInfoData,
+		setCreatingUser
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
@@ -81,6 +83,9 @@ const UserRegistrationIndex = () => {
 				console.log("Created a new credential successfully!");
 				// this data should be the result of creating a new credential which should contain a new credential id
 				console.log(data);
+
+				// Done with creating a new user, hide the laoding spinner
+				setCreatingUser(false);
 			})
 			.catch((err) => {
 				console.log(err);
