@@ -100,7 +100,8 @@ const UserRegistrationIndex = () => {
 		myselfData,
 		organizationData,
 		enteredEmail,
-		enteredPassword
+		enteredPassword,
+		setCreatingUser
 	) => {
 		// We need to include the household relationship because we want to create a household automatically for every single user
 		const newMyselfData = {
@@ -118,14 +119,16 @@ const UserRegistrationIndex = () => {
 		createNewSingleUserContactAndCredential(
 			newMyselfData,
 			newCredentialInfoData,
-			organizationData
+			organizationData,
+			setCreatingUser
 		);
 	};
 
 	const createNewSingleUserContactAndCredential = (
 		newMyselfData,
 		newCredentialInfoData,
-		organizationData
+		organizationData,
+		setCreatingUser
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
 		fetch("https://localhost:44398/contacts/createContact", {
@@ -162,14 +165,14 @@ const UserRegistrationIndex = () => {
 					primarycontactid: newContactId,
 				};
 
-				createNewOrganization(newOrganizationData);
+				createNewOrganization(newOrganizationData, setCreatingUser);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
-	const createNewOrganization = (newOrganizationData) => {
+	const createNewOrganization = (newOrganizationData, setCreatingUser) => {
 		console.log("new org data I will use to create a new org");
 		console.log(newOrganizationData);
 		// I learned that I MUST have the headers here otherwise I got a 415 error
@@ -179,6 +182,8 @@ const UserRegistrationIndex = () => {
 			headers: { "Content-type": "application/json; charset=UTF-8" },
 		}).then((response) => {
 			console.log(response);
+			// Done with creating a new user, hide the laoding spinner
+			setCreatingUser(false);
 		});
 	};
 
