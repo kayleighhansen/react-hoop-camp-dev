@@ -370,31 +370,41 @@ const UserRegistrationIndex = () => {
 		<div className="react-userRegisterForm-all">
 			<div className="react-userRegisterForm-index">
 				<h1>Register New Account</h1>
-				<p>I am registering for: </p>
-				<input
-					type="radio"
-					id="myself"
-					name="user_type"
-					value="Myself"
-					onClick={selectedFormHandler}
-				></input>
-				<label htmlFor="myself">Myself</label>
-				<input
-					type="radio"
-					id="dependent"
-					name="user_type"
-					value="Dependent"
-					onClick={selectedFormHandler}
-				></input>
-				<label htmlFor="dependent">Myself & Dependent(s)</label>
-				<input
-					type="radio"
-					id="organization"
-					name="user_type"
-					value="Organization"
-					onClick={selectedFormHandler}
-				></input>
-				<label htmlFor="organization">An Organization</label>
+				<div className="start-registration-box">
+					<p>I am registering for: </p>
+					<div className="registration-radio-btn-container">
+						<div className="registration-radio-btn">
+							<input
+								type="radio"
+								id="myself"
+								name="user_type"
+								value="Myself"
+								onClick={selectedFormHandler}
+							></input>
+							<label htmlFor="myself">Myself</label>
+						</div>
+						<div className="registration-radio-btn">
+							<input
+								type="radio"
+								id="dependent"
+								name="user_type"
+								value="Dependent"
+								onClick={selectedFormHandler}
+							></input>
+							<label htmlFor="dependent">Myself & Dependent(s)</label>
+						</div>
+						<div className="registration-radio-btn">
+							<input
+								type="radio"
+								id="organization"
+								name="user_type"
+								value="Organization"
+								onClick={selectedFormHandler}
+							></input>
+							<label htmlFor="organization">An Organization</label>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div className="react-userRegisterForm">
 				<div>{renderSelectedForm(selectedForm)}</div>
