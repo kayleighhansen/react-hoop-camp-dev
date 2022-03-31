@@ -133,7 +133,8 @@ const UserRegistrationIndex = () => {
 		setCreatingUser
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
-		fetch("https://localhost:44398/contacts/createContact", {
+		// localhost test endpoint: https://localhost:44398/contacts/createContact
+		fetch("https://hoopcamp-dev.azurewebsites.net/contacts/createContact", {
 			method: "POST",
 			body: JSON.stringify(newMyselfData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -178,7 +179,8 @@ const UserRegistrationIndex = () => {
 		console.log("new org data I will use to create a new org");
 		console.log(newOrganizationData);
 		// I learned that I MUST have the headers here otherwise I got a 415 error
-		fetch("https://localhost:44398/accounts/createAccount", {
+		// localhost test endpoint: https://localhost:44398/accounts/createAccount
+		fetch("https://hoopcamp-dev.azurewebsites.net/accounts/createAccount", {
 			method: "POST",
 			body: JSON.stringify(newOrganizationData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -236,7 +238,8 @@ const UserRegistrationIndex = () => {
 		setCreatingUser
 	) => {
 		// I learned that I MUST have the headers here otherwise I got a 415 error
-		fetch("https://localhost:44398/contacts/createContact", {
+		// localhost test endpoint: https://localhost:44398/contacts/createContact
+		fetch("https://hoopcamp-dev.azurewebsites.net/contacts/createContact", {
 			method: "POST",
 			body: JSON.stringify(newMyselfData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -274,7 +277,8 @@ const UserRegistrationIndex = () => {
 	// Create a new credential for a single user
 	const createNewCrendential = (newCredentialInfoData) => {
 		// This endpoint requires username, password, and contactid, it will hash the password before saving to database
-		fetch("https://localhost:44398/credentials/createCredential", {
+		// localhost test endpoint: https://localhost:44398/credentials/createCredential
+		fetch("https://hoopcamp-dev.azurewebsites.net/credentials/createCredential", {
 			method: "POST",
 			body: JSON.stringify(newCredentialInfoData),
 			headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -308,7 +312,8 @@ const UserRegistrationIndex = () => {
 		// we want to make an api call for each dependent
 		newDependentData.forEach((dependent) => {
 			// call backend api to create new dependent into the household
-			fetch("https://localhost:44398/contacts/createChildInHousehold", {
+			// localhost test endpoint: https://localhost:44398/contacts/createChildInHousehold
+			fetch("https://hoopcamp-dev.azurewebsites.net/contacts/createChildInHousehold", {
 				method: "POST",
 				body: JSON.stringify(dependent),
 				headers: { "Content-type": "application/json; charset=UTF-8" },
