@@ -1,6 +1,9 @@
 import { useState } from "react";
-import "./user_registration_myself_form.css";
+import "../App.css";
 import ClipLoader from "react-spinners/ClipLoader";
+
+import { faEnvelope, faLock, faBasketball } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 	// handle first name
@@ -131,141 +134,169 @@ const UserRegistrationMyselfForm = ({ onGetSelfFormValues }) => {
 		<div className="react-userRegisterForm-myself">
 			{creatingUser && (
 				<div>
-					<h2>Creating a user...</h2>
+					<h2>Creating your account...</h2>
 					<ClipLoader color="rgb(255,177,3)" size={100} />
 				</div>
 			)}
 			{!creatingUser && (
-				<div>
-					<h3>Myself</h3>
-					<form
-						className="react-userRegisterForm-myself-grid-container"
-						onSubmit={submitHandler}
-					>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="fname">First Name</label>
-							<br />
-							<input
-								type="text"
-								name="first_name"
-								id="fname"
-								onChange={firstNameChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="lname">Last Name</label>
-							<br />
-							<input
-								type="text"
-								name="last_name"
-								id="lname"
-								onChange={lastNameChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="email">Email</label>
-							<br />
-							<input
-								type="email"
-								name="email"
-								id="email"
-								onChange={emailChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="city">City</label>
-							<br />
-							<input
-								type="text"
-								name="city"
-								id="city"
-								onChange={cityChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="state">State</label>
-							<br />
-							<input
-								type="text"
-								name="state"
-								id="state"
-								onChange={stateChangeHandler}
-								required
-							/>
-						</div>
-						{/* <div className="">
-							<input
-								type="text"
-								name="birthday"
-								onChange={birthdayChangeHandler}
-								required
-							/>
-						</div> */}
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="country">Country</label>
-							<br />
-							<input
-								type="text"
-								name="country"
-								id="country"
-								onChange={countryChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="phone">Phone</label>
-							<br />
-							<input
-								type="text"
-								name="phone"
-								id="phone"
-								onChange={phoneChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="password">Password</label>
-							<br />
-							<input
-								type="password"
-								minLength="4"
-								name="password"
-								id="password"
-								placeholder="At least 4 characters long"
-								onChange={passwordChangeHandler}
-								required
-							/>
-						</div>
-						<div className="react-userRegisterForm-myself-grid-format">
-							<label htmlFor="confirm_password">Confirm Password</label>
-							<br />
-							<input
-								type="password"
-								minLength="4"
-								name="confirm_password"
-								id="confirm_password"
-								placeholder="Must match the password"
-								onChange={confirmPasswordChangeHandler}
-								required
-							/>
-						</div>
-						{!formIsValid && (
-							<div className="react-userRegisterForm-myself-error-message">
-								<h3>{errorMessage}</h3>
+			<div className="react-userRegisterForm-myself">
+					<p>You are registering for your own account and will be able to register for upcoming Hoop Camp events.</p>
+				<div className="react-userRegistrationForm-myself-header">
+					 <h3 className="header-text">Myself</h3></div>
+				<form className="react-userRegisterForm-myself-2" onSubmit={submitHandler}>
+					<div className="react-userRegisterForm-name react-userRegisterForm-section">
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label> First Name </label>
 							</div>
-						)}
+							<div>
+								<input
+									type="text"
+									name="first_name"
+									id="fname"
+									onChange={firstNameChangeHandler}
+									required />
+							</div>
+						</div>
+	
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label> Last Name </label>
+							</div>
+							<div>
+								<input
+									type="text"
+									name="last_name"
+									id="lname"
+									onChange={lastNameChangeHandler}
+									required />
+							</div>
+						</div>
+					</div>
+	
+					<div className="react-userRegisterForm-email react-userRegisterForm-section">
+						<div className="react-userRegisterForm-long-item">
+							<div className="label-container">
+								<label>Phone </label>
+							</div>
+							<div>
+								<input
+									type="phone"
+									name="phone"
+									id="phone"
+									onChange={phoneChangeHandler}
+									required />
+							</div>
+						</div>
+					</div>
+	
+					<div className="react-userRegisterForm-address react-userRegisterForm-section">
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label> City </label>
+							</div>
+							<div>
+								<input type="text"
+									name="city"
+									id="city"
+									onChange={cityChangeHandler}
+									required />
+							</div>
+						</div>
+	
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label> State</label>
+							</div>
+							<div>
+								<input
+									type="text"
+									name="state"
+									id="state"
+									onChange={stateChangeHandler}
+									required />
+							</div>
+						</div>
+	
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label>Country </label>
+							</div>
+							<div>
+								<input
+									type="text"
+									name="country"
+									id="country"
+									onChange={countryChangeHandler}
+									required />
+							</div>
+						</div>
+					</div>
+	
+	
+					<div className="react-userRegisterForm-login react-userRegisterForm-section">
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label>Email <FontAwesomeIcon icon={faEnvelope} /></label>
+							</div>
+							<div>
+								<input
+									type="email"
+									name="email"
+									id="email"
+									onChange={emailChangeHandler}
+									required />
+							</div>
+							<p className="under-input-comment"> This will be your account username </p>
+
+						</div>
+	
+						<div className="react-userRegisterForm-short-item">
+							<div className="label-container">
+								<label> Password <FontAwesomeIcon icon={faLock} /></label>
+							</div>
+							<div>
+								<input
+									type="password"
+									minLength="4"
+									name="password"
+									id="password"
+									onChange={passwordChangeHandler}
+									required />
+							</div>
+							<p className="under-input-comment"> Must be 4+ characters </p>
+
+						</div>
+	
+						<div className="react-userRegisterForm-short-item">
+							<label> <div className="label-container">
+								<label> Confirm Password <FontAwesomeIcon icon={faLock} /></label>
+							</div></label>
+							<div>
+								<input
+									type="password"
+									minLength="4"
+									name="confirm_password"
+									id="confirm_password"
+									onChange={confirmPasswordChangeHandler}
+									required />
+							</div>
+							<p className="under-input-comment"> Must match your password </p>
+						</div>
+					</div>
+	
+					<div className="react-userRegisterForm-myself-register-button-container">
 						<button
 							className="react-userRegisterForm-myself-register-button"
 							type="submit"
 						>
-							Register My Account
+							<FontAwesomeIcon icon={faBasketball} /> Register My Account
 						</button>
-					</form>
-				</div>
+					</div>
+				</form>
+	
+			</div>
+	
 			)}
 		</div>
 	);

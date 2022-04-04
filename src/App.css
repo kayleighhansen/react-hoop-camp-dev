@@ -1,0 +1,288 @@
+/* Registration Index */
+
+.react-userRegisterForm-all {
+    max-width: 800px;
+    margin: auto;
+    /* text-align:center; */
+}
+
+.react-userRegisterForm input {
+    width: 200px;
+    height: 25px;
+    border: none;
+    background-color: lightgrey;
+    font-style: italic;
+}
+
+.react-userRegisterForm-index label {
+    margin-right: 25px;
+}
+
+.react-userRegisterForm-register-account-button {
+    margin-top: 16px;
+    width: 350px;
+    height: 30px;
+    border: none;
+    background: rgb(77, 126, 218);
+    color: white;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.start-registration-box {
+    background-color: #eeeeee;
+    padding: 30px 20px;
+}
+
+.registration-radio-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.start-registration-box p {
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Dependent Form */
+
+.react-userRegisterForm-dependent-add-button {
+	border: none;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+	transition: 0.3s;
+}
+
+.react-userRegisterForm-dependent-add-button:hover {
+	background-color: rgb(87, 87, 87);
+}
+
+
+
+.react-userRegisterForm-dependent-remove-button button {
+	border: none;
+    background-color: darkred;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+	transition: 0.3s;
+}
+
+.react-userRegisterForm-dependent-remove-button button:hover {
+	background-color: rgb(103, 0, 0);
+}
+
+.react-userRegisterForm-dependent-single-dependant {
+	display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+	align-items: end;
+}
+
+.react-userRegisterForm-dependent-grid-container p{
+	text-align: left;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+/* .react-userRegisterForm-dependent-grid-container {
+	display: flex;
+    justify-content: center;
+} */
+
+hr {
+	margin-top: 20px;
+    border: 0.5px solid white;
+}
+
+/* .total-dependant-form {
+	background-color: #edededee;
+    padding-top: 10px;
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-right: -8px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+} */
+
+/* .white-input {
+	background-color:white !important;
+} */
+
+/* Myself Registration */
+
+.react-userRegistrationForm-myself-header {
+	margin-bottom: 30px;
+    margin-top: 30px;
+    font-size: 25px;	
+}
+
+.react-userRegistrationForm-myself-header-icon {
+    border: 3px solid #8bb8da;
+    border-radius: 50%;
+    padding: 20px;
+    margin-top: -10px;
+    color: #317fbb;
+    box-shadow: 0px 0px 10px 0px #93bee0;
+    opacity: 40%;
+    margin-left: -6%;
+}
+
+
+.react-userRegisterForm-name {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* .react-userRegisterForm-name div {
+    width: 100%;
+} */
+
+.react-userRegisterForm-email {
+    margin: 0px 5px;
+}
+
+.react-userRegisterForm input {
+    border: none;
+    background-color: #eeeeee;
+    font-style: italic;
+    font-size: 15px;
+    padding: 5px 0px;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.react-userRegisterForm input:focus {
+    outline:none;
+}
+
+label {
+    text-align: left;
+}
+
+.react-userRegisterForm-address {
+    display:flex;
+    gap: 10px;
+}
+
+.react-userRegisterForm-short-item {
+    margin: 0px 5px;
+    width: 100%;
+}
+
+.react-userRegisterForm-login {
+    display: flex;
+    gap: 10px;
+}
+
+.react-userRegisterForm-section {
+    padding-bottom: 20px;
+}
+
+.label-container {
+    display:flex;
+    margin-left: 4px;
+}
+
+.react-userRegisterForm-myself-register-button-container {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.react-userRegisterForm-myself-register-button {
+    border: none;
+    background-color: #317fbb;
+    padding: 10px 30px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 100%;
+    transition: 0.3s;
+    font-size: 15px;
+	margin-right:-15px;
+}
+
+.react-userRegisterForm-myself-register-button:hover {
+    background-color: #226191;
+}
+
+.password-warning {
+    margin: 0;
+    margin-left: 4px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Organization Form */
+
+.react-userRegisterForm-organization-grid-format {
+	text-align: left;
+	margin-left: 45px;
+}
+
+/* .react-userRegisterForm-organization-grid-container {
+	display: grid;
+	grid-row-gap: 8px;
+	grid-template-columns: auto auto auto;
+} */
+
+.react-userRegisterForm-organization-register-button {
+	width: 350px;
+	height: 30px;
+	border: none;
+	background: rgb(77, 126, 218);
+	color: white;
+	font-style: italic;
+	font-size: 16px;
+	margin: 10px auto;
+	grid-column: 1/4;
+}
+
+/* .react-userRegisterForm-organization-myself-grid-container {
+	display: grid;
+	grid-row-gap: 8px;
+	grid-template-columns: 1fr 1fr 1fr;
+} */
+
+.react-userRegisterForm-organization-myself-grid-format {
+    text-align: left;
+    margin-right: 10px;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    background-color: #eeee;
+    border: none;
+}
+
+.react-userRegisterForm-orgName, .react-userRegisterForm-orgContact, .react-userRegisterForm-orgAddress {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.react-userRegisterForm-formControl-midLength, .react-userRegisterForm-organization-formControl-shortLength {
+    width: 100%;
+}
+
+.under-input-comment {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight:bold;
+}
+
+.react-userRegisterForm-organization-form h3 {
+    margin-top: 50px;
+    font-size: 25px;
+}

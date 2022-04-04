@@ -1,4 +1,4 @@
-import "./user_registration_index.css";
+import "../App.css";
 import { useState } from "react";
 
 import UserRegistrationMyselfForm from "./user_registration_myself_form";
