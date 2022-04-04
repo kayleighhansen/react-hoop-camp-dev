@@ -151,10 +151,10 @@ hr {
 
 .react-userRegisterForm input {
     border: none;
-    background-color: #eeeeee;
+    background-color: #eeee;
     font-style: italic;
     font-size: 15px;
-    padding: 5px 0px;
+    padding: 20px 0px;
     width: 100%;
     padding-left: 15px;
 }
@@ -286,3 +286,5 @@ select {
     margin-top: 50px;
     font-size: 25px;
 }
+
+/* padding: 20px 20px 0px 20px !important; */
